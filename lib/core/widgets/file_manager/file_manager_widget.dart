@@ -1,4 +1,5 @@
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../src/features/core/data/models/file_model.dart';
@@ -33,7 +34,7 @@ class FileManagerWidget extends StatefulWidget {
 }
 
 class _FileManagerWidgetState extends State<FileManagerWidget> {
-  final List<PlatformFile> _files = [];
+  List<PlatformFile> _files = [];
 
   void pickerFile() async {
     final pickedFile = await FilePicker.platform.pickFiles(allowMultiple: true);

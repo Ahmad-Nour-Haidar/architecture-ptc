@@ -4,5 +4,5 @@ part of 'splash_cubit.dart';
 class SplashState with _$SplashState {
   const factory SplashState.initial() = _Initial;
   const factory SplashState.loading() = _Loading;
-  const factory SplashState.success(dynamic data) = _Success;
+  const factory SplashState.success(dynamic? data) = _Success;
 }

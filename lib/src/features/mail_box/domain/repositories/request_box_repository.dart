@@ -15,15 +15,9 @@ class RequestBoxRepository {
     required RequestBox requestBox,
     List<int>? fileIds,
   }) async {
-    try {
-      final response = await _remoteDataSource.createRequestBox(
-          requestBox: requestBox, fileIds: fileIds);
-      return ApiResponse.success(response);
-    } catch (error) {
-      return ApiResponse.failure(
-        NetworkExceptions.getException(error),
-      );
-    }
+    return ApiResponse.success(BaseModel(data: null));
+
+    ///code here
   }
 
   Future<ApiResponse<BaseModel>> getRequestBoxById(
@@ -41,39 +35,22 @@ class RequestBoxRepository {
 
   Future<ApiResponse<BaseModel>> getRequestBoxes(
       {required int? page, required String nameList}) async {
-    try {
-      final response = await _remoteDataSource.getRequestBoxes(
-          page: page, nameList: nameList);
-      return ApiResponse.success(response);
-    } catch (error) {
-      return ApiResponse.failure(
-        NetworkExceptions.getException(error),
-      );
-    }
+    return ApiResponse.success(BaseModel(data: null));
+
+    ///code here
   }
 
   Future<ApiResponse<BaseModel>> getRequestBoxTypes(
       {required int? page, required String? term}) async {
-    try {
-      final response =
-          await _remoteDataSource.getRequestBoxTypes(page: page, term: term);
-      return ApiResponse.success(response);
-    } catch (error) {
-      return ApiResponse.failure(
-        NetworkExceptions.getException(error),
-      );
-    }
+    return ApiResponse.success(BaseModel(data: null));
+
+    ///code here
   }
 
   Future<ApiResponse<BaseModel>> getInfoBox() async {
-    try {
-      final response = await _remoteDataSource.getInfoBox();
-      return ApiResponse.success(response);
-    } catch (error) {
-      return ApiResponse.failure(
-        NetworkExceptions.getException(error),
-      );
-    }
+    return ApiResponse.success(BaseModel(data: null));
+
+    ///code here
   }
 
   Future<ApiResponse<BaseModel>> uploadRequestFiles(BuildContext context,

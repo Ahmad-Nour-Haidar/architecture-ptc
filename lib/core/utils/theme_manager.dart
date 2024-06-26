@@ -12,9 +12,10 @@ class ThemeManager {
           primaryColor: ColorManager.primary,
           primaryIconTheme: const IconThemeData(color: ColorManager.primary),
           iconButtonTheme: IconButtonThemeData(
-              style: ButtonStyle(
-                  // iconColor: WidgetStateProperty.all(ColorManager.primary),
-                  )),
+            style: ButtonStyle(
+                // iconColor: WidgetStateProperty.all(ColorManager.primary),
+                ),
+          ),
           appBarTheme: const AppBarTheme(
               elevation: 0,
               iconTheme: IconThemeData(color: ColorManager.primary),

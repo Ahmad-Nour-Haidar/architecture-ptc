@@ -2,7 +2,7 @@ import '../../../../../core/data/models/base_model.dart';
 
 import '../../../../../core/domain/services/api_service.dart';
 import '../../../../../core/utils/app_url.dart';
-import '../../../cache/data/models/users.dart';
+import '../models/user_model.dart';
 
 class UsersRemoteDataSource {
   final ApiServices _apiServices;

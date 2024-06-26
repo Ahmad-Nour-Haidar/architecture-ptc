@@ -1,7 +1,7 @@
 import '../../../../../core/data/datasource/remote/api_response.dart';
 import '../../../../../core/data/models/base_model.dart';
 import '../../../../../core/domain/error_handler/network_exceptions.dart';
-import '../../../cache/data/models/users.dart';
+import '../../../core/data/models/user_model.dart';
 import '../../data/datasource/remote/auth_remote_data_source.dart';
 
 class AuthRepository {

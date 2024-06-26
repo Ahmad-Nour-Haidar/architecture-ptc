@@ -21,16 +21,10 @@ class _NavbarPageState extends State<NavbarPage> {
   final List<dynamic> _icons = [
     Icons.home_outlined,
     Icons.mail,
-    // Icons.groups,
-    // Icons.language_outlined,
-    // Icons.list,
   ];
   final List<Widget> _widgets = [
     const HomePage(),
     const MailBoxRequestPage(),
-    // const UsersPage(),
-    // LanguagesPage(),
-    // CategoriesPage(),
   ];
 
   final _searchController = TextEditingController();

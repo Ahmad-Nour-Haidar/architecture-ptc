@@ -1,7 +1,7 @@
 import 'package:architecture_ptc/src/features/mail_box/data/models/replay_box_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../cache/data/models/users.dart';
+import '../../../core/data/models/user_model.dart';
 import '../../../core/data/models/file_model.dart';
 
 part 'request_box_model.g.dart';

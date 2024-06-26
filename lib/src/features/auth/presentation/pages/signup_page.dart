@@ -1,9 +1,12 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../../core/helper/sizer_media_query.dart';
 import '../../../../../core/utils/assets_manager.dart';
@@ -16,8 +19,6 @@ import '../../../../../core/widgets/textfield_with_label.dart';
 import '../../../core/presentation/cubits/user_cubit/user_cubit.dart';
 
 class SignupPage extends StatefulWidget {
-  const SignupPage({super.key});
-
   @override
   State<SignupPage> createState() => _SignupPageState();
 }
@@ -49,29 +50,29 @@ class _SignupPageState extends State<SignupPage> {
   final _formKey = GlobalKey<FormState>();
   Future<void> _pickerFromGallery(
       BuildContext context, Function setState) async {
-    final imageGallery = await _picker.pickImage(
+    final _imageGallery = await _picker.pickImage(
       source: ImageSource.gallery,
     );
-    if (imageGallery != null) {
+    if (_imageGallery != null) {
       setState(() {
-        _imagePick = XFile(imageGallery.path);
+        _imagePick = XFile(_imageGallery.path);
         Navigator.pop(context);
       });
-      log(imageGallery.path);
+      log('${_imageGallery.path}');
     }
   }
 
   Future<void> _pickerFromCamera(
       BuildContext context, Function setState) async {
-    final imageCamera = await _picker.pickImage(
+    final _imageCamera = await _picker.pickImage(
       source: ImageSource.camera,
     );
-    if (imageCamera != null) {
+    if (_imageCamera != null) {
       setState(() {
-        _imagePick = XFile(imageCamera.path);
+        _imagePick = XFile(_imageCamera.path);
       });
       Navigator.pop(context);
-      log(imageCamera.path);
+      log('${_imageCamera.path}');
     }
   }
 

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,7 +29,7 @@ class UploadManagerCubit extends Cubit<UploadManagerState> {
 
   void initFileWithoutKey({required InfoFile file}) {
     file.key == null
-        ? file.key = DateTime.now().toIso8601String() + (file.name ?? '')
+        ? file.key = DateTime.now().toIso8601String() + (file?.name ?? '')
         : '';
     uploadManagerMap[file.key ?? keyDefault] = file;
   }

@@ -1,21 +1,16 @@
 import 'dart:async';
-
 import 'package:architecture_ptc/core/data/datasource/storage/app_storage.dart';
-import 'package:architecture_ptc/src/features/cache/data/models/users.dart';
+import 'package:architecture_ptc/src/features/core/data/models/user_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../../../../../../core/domain/error_handler/network_exceptions.dart';
-
 import '../../../../../../core/routing/app_router.dart';
 import '../../../../../../core/widgets/constants.dart';
 import '../../../../auth/domain/repositories/auth_repository.dart';
-
 part 'user_state.dart';
 part 'user_cubit.freezed.dart';
 

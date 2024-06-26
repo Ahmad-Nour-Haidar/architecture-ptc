@@ -27,7 +27,7 @@ class ProfileImage extends StatelessWidget {
       failUrl: failUrl,
       // emptyWidget: Image.asset(AssetsManager.maleProfileIMG),
       emptyWidget: IconHandler(
-        AssetsManager.logoIMG,
+        AssetsManager.maleProfileIMG,
         width: width,
         height: height,
       ),

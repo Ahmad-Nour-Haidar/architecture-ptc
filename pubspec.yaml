@@ -55,6 +55,7 @@ dependencies:
   infinite_scroll_pagination: ^4.0.0
   flutter_styled_toast: ^2.2.1
   intl: ^0.18.1
+  get_it: ^7.7.0
 
 dev_dependencies:
   flutter_test:

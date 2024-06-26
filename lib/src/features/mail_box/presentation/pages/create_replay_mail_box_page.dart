@@ -1,4 +1,4 @@
-import 'package:architecture_ptc/src/features/cache/data/models/users.dart';
+import 'package:architecture_ptc/src/features/core/data/models/user_model.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -9,7 +9,6 @@ import '../../../../../core/widgets/file_manager/file_manager_widget.dart';
 import '../../../../../core/widgets/textfield_app.dart';
 import '../../../core/data/models/file_model.dart';
 import '../../data/models/request_box_model.dart';
-import '../cubits/replay_box_cubit/replay_box_cubit.dart';
 import '../cubits/request_box_cubit/request_box_cubit.dart';
 import '/core/utils/color_manager.dart';
 import '../../../../../core/utils/values_manager.dart';
@@ -42,13 +41,8 @@ class _CreateReplayBoxPageState extends State<CreateReplayBoxPage>
   }
 
   Future<void> createReplayBox(BuildContext context) async {
-    await BlocProvider.of<ReplayBoxCubit>(context).createReplayBox(context,
-        requestId: widget.requestBox.id,
-        title: titleController.value.text,
-        subTitle: subTitleController.value.text,
-        fileIds: _fileModels.map((e) => e.id ?? -1).toList());
+    ///code here
   }
-
   @override
   void initState() {
     _user = widget.requestBox.recivedUser;
@@ -72,8 +66,6 @@ class _CreateReplayBoxPageState extends State<CreateReplayBoxPage>
           case ScrollDirection.forward:
             if (userScroll.metrics.maxScrollExtent !=
                 userScroll.metrics.minScrollExtent) {
-              print('object Forward ${userScroll.metrics.minScrollExtent}');
-              print('object Forward ${userScroll.metrics.maxScrollExtent}');
               _hideFabAnimation.forward();
             }
             break;
@@ -81,8 +73,6 @@ class _CreateReplayBoxPageState extends State<CreateReplayBoxPage>
             if (userScroll.metrics.maxScrollExtent !=
                 userScroll.metrics.minScrollExtent) {
               _hideFabAnimation.reverse();
-              print('object Revers ${userScroll.metrics.minScrollExtent}');
-              print('object Revers ${userScroll.metrics.maxScrollExtent}');
             }
             break;
           case ScrollDirection.idle:

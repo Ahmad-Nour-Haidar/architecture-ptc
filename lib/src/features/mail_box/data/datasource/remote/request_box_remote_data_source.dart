@@ -37,45 +37,28 @@ class RequestBoxRemoteDataSource {
     required RequestBox requestBox,
     List<int>? fileIds,
   }) async {
-    var body = requestBox.toJson();
-    body['files_ids'] = fileIds;
-    final response = await _apiServices.post(AppUrl.requestMailBox,
-        body: body, hasToken: true);
-    return BaseModel(
-        data: null,
-        message: response['message'] ?? "Create request successful");
+    return BaseModel(data: null);
+
+    ///code here
   }
 
   Future<BaseModel> getRequestBoxById({required int requestBoxId}) async {
-    final response = await _apiServices
-        .get('${AppUrl.requestMailBoxById}$requestBoxId', hasToken: true);
-    return BaseModel.fromJson(
-      response,
-      (json) => RequestBox.fromJson(json),
-    );
+    return BaseModel(data: null);
+
+    ///code here
   }
 
   Future<BaseModel> getInfoBox() async {
-    final response =
-        await _apiServices.get(AppUrl.getInfoMailBox, hasToken: true);
-    return BaseModel.fromJson(
-      response,
-      (json) => InfoBox.fromJson(json),
-    );
+    return BaseModel(data: null);
+
+    ///code here
   }
 
   Future<BaseModel> getRequestBoxes(
       {required int? page, required String nameList}) async {
-    Map<String, String> queryParams = {};
-    if (page != null) queryParams = {"page": "$page"};
-    final response = await _apiServices.get(
-        '${AppUrl.requestMailBox}/$nameList',
-        queryParams: queryParams,
-        hasToken: true);
-    return BaseModel.fromJson(
-      response,
-      (json) => RequestBoxes.fromJson(json),
-    );
+    return BaseModel(data: null);
+
+    ///code here
   }
 
   Future<BaseModel> getRequestBoxTypes(

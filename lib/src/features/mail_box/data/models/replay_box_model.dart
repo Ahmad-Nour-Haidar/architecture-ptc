@@ -1,4 +1,4 @@
-import 'package:architecture_ptc/src/features/cache/data/models/users.dart';
+import 'package:architecture_ptc/src/features/core/data/models/user_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../../core/data/models/file_model.dart';

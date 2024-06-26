@@ -1,4 +1,5 @@
-import 'package:architecture_ptc/src/features/cache/data/models/users.dart';
+import 'package:architecture_ptc/src/features/core/data/models/user_model.dart';
+import 'package:dio/dio.dart';
 import '../../../../../../core/data/models/base_model.dart';
 import '../../../../../../core/domain/services/api_service.dart';
 import '../../../../../../core/utils/app_url.dart';
