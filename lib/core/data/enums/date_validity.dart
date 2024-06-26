@@ -1,0 +1,1 @@
+enum DateValidity { valid, expired }
