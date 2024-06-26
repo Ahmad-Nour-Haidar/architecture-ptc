@@ -24,13 +24,12 @@ class _DetailsUserPageState extends State<DetailsUserPage> {
   @override
   void initState() {
     // user=UserModel.fromJson(getUserById(widget.id));
-    user=UsersCache.instance.getUser(widget.id);
+    user = UsersCache.instance.getUser(widget.id);
     print(user?.toJson());
-     super.initState();
+    super.initState();
   }
-  Future<void> _onRefresh()async {
 
-  }
+  Future<void> _onRefresh() async {}
 
   @override
   Widget build(BuildContext context) {
@@ -45,100 +44,90 @@ class _DetailsUserPageState extends State<DetailsUserPage> {
           ),
         ),
       ),
-      body:  RefreshBase(
-        onRefresh:_onRefresh,
+      body: RefreshBase(
+        onRefresh: _onRefresh,
         child: builderDetailsCourse(context),
-
       ),
     );
   }
-  Widget builderDetailsCourse(BuildContext context){
 
-    return
-      SingleChildScrollView(
-          controller: scrollController,
-          child:
-          Column(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(AppPadding.p14),
-                width: double.infinity,
-                decoration: const BoxDecoration(
-                  color: ColorManager.shadowColor,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child:
-                        ProfileImage(
-                          url: user?.image,
-                           // ??'https://th.bing.com/th/id/OIP.6m-225JfAsDczM6b7rMeQgHaEK?rs=1&pid=ImgDetMain',
-                          width:getWidth(context) / 1.75,
-                          height:  getWidth(context) / 3,
-                        )
-                    ),
-                    const SizedBox(
-                      height: AppSize.s10,
-                    ),
-                    Text(
-                      '# ${formatText(user?.id)}',
-                      style: const TextStyle(
+  Widget builderDetailsCourse(BuildContext context) {
+    return SingleChildScrollView(
+        controller: scrollController,
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(AppPadding.p14),
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                color: ColorManager.shadowColor,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: ProfileImage(
+                        url: user?.image,
+                        // ??'https://th.bing.com/th/id/OIP.6m-225JfAsDczM6b7rMeQgHaEK?rs=1&pid=ImgDetMain',
+                        width: getWidth(context) / 1.75,
+                        height: getWidth(context) / 3,
+                      )),
+                  const SizedBox(
+                    height: AppSize.s10,
+                  ),
+                  Text(
+                    '# ${formatText(user?.id)}',
+                    style: const TextStyle(
                         color: ColorManager.primary,
                         fontWeight: FontWeight.bold,
-                        fontSize: 18
-                      ),
-                    ),
-                    const SizedBox(
-                      height: AppSize.s10,
-                    ),
-                    Wrap(
-                      runSpacing: AppSize.s4,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: AppMargin.m4),
-                          padding: const EdgeInsets.all(
-                            AppPadding.p8,
-                          ),
-                          decoration: BoxDecoration(
-                              color: ColorManager.primary,
-                              borderRadius: BorderRadius.circular(100.0)),
-                          child:  Text(
-                            formatText(user?.completeName),
-                            style: const TextStyle(
-                                color: ColorManager.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12),
-                          ),
+                        fontSize: 18),
+                  ),
+                  const SizedBox(
+                    height: AppSize.s10,
+                  ),
+                  Wrap(
+                    runSpacing: AppSize.s4,
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: AppMargin.m4),
+                        padding: const EdgeInsets.all(
+                          AppPadding.p8,
                         ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: AppSize.s10,
-                    ),
-                    ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      title: Text(
-                        formatText(user?.about),
-                        style: const TextStyle(
-                          color: ColorManager.endColor,
-                          fontWeight: FontWeight.bold,
+                        decoration: BoxDecoration(
+                            color: ColorManager.primary,
+                            borderRadius: BorderRadius.circular(100.0)),
+                        child: Text(
+                          formatText(user?.completeName),
+                          style: const TextStyle(
+                              color: ColorManager.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12),
                         ),
                       ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: AppSize.s10,
+                  ),
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(
+                      formatText(user?.about),
+                      style: const TextStyle(
+                        color: ColorManager.endColor,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                    const SizedBox(
-                      height: AppSize.s10,
-                    ),
-
-                  ],
-                ),
+                  ),
+                  const SizedBox(
+                    height: AppSize.s10,
+                  ),
+                ],
               ),
-            ],
-          )
-      );
+            ),
+          ],
+        ));
   }
-
-
 }

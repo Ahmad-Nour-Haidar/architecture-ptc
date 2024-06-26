@@ -9,7 +9,8 @@ import 'package:architecture_ptc/src/features/mail_box/domain/repositories/reque
 import 'package:dio/dio.dart';
 
 class BlocProviderSingleton {
-  static final BlocProviderSingleton _instance = BlocProviderSingleton._internal();
+  static final BlocProviderSingleton _instance =
+      BlocProviderSingleton._internal();
   static BlocProviderSingleton get instance => _instance;
 
   factory BlocProviderSingleton() {
@@ -17,14 +18,13 @@ class BlocProviderSingleton {
   }
 
   BlocProviderSingleton._internal();
-
 }
 
-
-final Dio dio=  Dio();
-final ApiServices apiServices=ApiServicesImp(dio);
-final AuthRepository authRepository=  AuthRepository(AuthRemoteDataSource(apiServices));
-final RequestBoxRepository requestBoxRepository=  RequestBoxRepository(RequestBoxRemoteDataSource(apiServices));
-final ReplayBoxRepository replayBoxRepository=  ReplayBoxRepository(ReplayBoxRemoteDataSource(apiServices));
-
-
+final Dio dio = Dio();
+final ApiServices apiServices = ApiServicesImp(dio);
+final AuthRepository authRepository =
+    AuthRepository(AuthRemoteDataSource(apiServices));
+final RequestBoxRepository requestBoxRepository =
+    RequestBoxRepository(RequestBoxRemoteDataSource(apiServices));
+final ReplayBoxRepository replayBoxRepository =
+    ReplayBoxRepository(ReplayBoxRemoteDataSource(apiServices));

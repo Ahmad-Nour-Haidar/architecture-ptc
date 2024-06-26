@@ -18,7 +18,7 @@ class ApiServicesImp implements ApiServices {
     _dio.options
       ..baseUrl = baseUrl
       ..responseType = ResponseType.plain
-      ..sendTimeout =const Duration(minutes: 1)
+      ..sendTimeout = const Duration(minutes: 1)
       ..receiveTimeout = const Duration(minutes: 1)
       ..connectTimeout = const Duration(seconds: 10)
       ..followRedirects = true;
@@ -29,13 +29,12 @@ class ApiServicesImp implements ApiServices {
     _headers = {
       "Accept": "application/json",
 
-      "accept-timezone":DateTime.now().timeZoneName,
-      "Authorization":
-          hasToken ? "Bearer ${( AppStorage.instance.readData(AppStorage.TOKEN))}" : null,
+      "accept-timezone": DateTime.now().timeZoneName,
+      "Authorization": hasToken
+          ? "Bearer ${(AppStorage.instance.readData(AppStorage.TOKEN))}"
+          : null,
       // "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhaG1hZDEiLCJleHAiOjE2NzE4Nzc2MTMsImlhdCI6MTY3MTUxNzYxM30.ipa9KNJP2QhloBMtC0g0P0lwfGZlhGw9aWXQTC02G74":null,
-
     };
-
   }
 
   @override
@@ -108,7 +107,8 @@ class ApiServicesImp implements ApiServices {
       await setHeaders(hasToken ?? true);
       var headers = {"Accept": "application/json"};
       if (hasToken ?? true) {
-        String token = "Bearer ${( AppStorage.instance.readData(AppStorage.TOKEN))}";
+        String token =
+            "Bearer ${(AppStorage.instance.readData(AppStorage.TOKEN))}";
         headers['Authorization'] = token;
       }
       final mRequest = http.MultipartRequest(typeRequest, Uri.parse(path))
@@ -116,7 +116,8 @@ class ApiServicesImp implements ApiServices {
         ..fields.addAll(body)
         ..headers.addAll(headers);
 
-      final response = await mRequest.send().timeout(const Duration(minutes: 1));
+      final response =
+          await mRequest.send().timeout(const Duration(minutes: 1));
       return jsonDecode(await response.stream.transform(utf8.decoder).first);
     } catch (error) {
       //BlocProvider.of<UploadManagerCubit>(context).failureUploadFile(key:key);
@@ -141,7 +142,6 @@ class ApiServicesImp implements ApiServices {
               Options(headers: _headers, contentType: Headers.jsonContentType),
           onSendProgress: (sent, total) {
         if (total != -1) {
-
           var progress = (sent / total * 100).toStringAsFixed(0);
           BlocProvider.of<UploadManagerCubit>(context)
               .uploadFile(key: key, progress: progress);
@@ -211,7 +211,7 @@ class ApiServicesImp implements ApiServices {
   }
 
   final dioLoggerInterceptor =
-  InterceptorsWrapper(onRequest: (RequestOptions options, handler) {
+      InterceptorsWrapper(onRequest: (RequestOptions options, handler) {
     String headers = "";
     options.headers.forEach((key, value) {
       headers += "| $key: $value";

@@ -1,8 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/utils/color_manager.dart';
 import '../../../../../core/utils/values_manager.dart';
+
 class UserWidget extends StatelessWidget {
   const UserWidget({
     super.key,
@@ -12,8 +12,6 @@ class UserWidget extends StatelessWidget {
 
   final String item;
   final VoidCallback onTap;
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +32,11 @@ class UserWidget extends StatelessWidget {
             ]),
         child: IntrinsicHeight(
           child: SizedBox(
-              width: ScreenUtil.defaultSize.width /2,
+              width: ScreenUtil.defaultSize.width / 2,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: AppPadding.p8),
                 child: Text(
-                  item ,
+                  item,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
@@ -46,8 +44,7 @@ class UserWidget extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-              )
-          ),
+              )),
         ),
       ),
     );

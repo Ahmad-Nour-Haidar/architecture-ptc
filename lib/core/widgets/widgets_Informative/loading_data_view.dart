@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import '../../utils/color_manager.dart';
 import '../../utils/values_manager.dart';
@@ -14,12 +13,12 @@ class LoadingDataView extends StatelessWidget {
         // width: ScreenUtil.defaultSize.width * 0.2,
         //   height: ScreenUtil.defaultSize.width * 0.2,
         decoration: BoxDecoration(
-            color: isShowContainer ? ColorManager.white : null,
-           /// borderRadius: BorderRadius.circular(8.sp //AppSize.s8
-            ///     )
+          color: isShowContainer ? ColorManager.white : null,
+
+          /// borderRadius: BorderRadius.circular(8.sp //AppSize.s8
+          ///     )
         ),
-        child:
-        const CircularProgressIndicator(
+        child: const CircularProgressIndicator(
           color: ColorManager.primary,
         )
         // LoadingAnimationWidget.discreteCircle(
@@ -28,7 +27,7 @@ class LoadingDataView extends StatelessWidget {
         //     color: AppColors.primary,
         //     size: ScreenUtil.defaultSize.width * 0.1)
 
-    );
+        );
   }
 }
 
@@ -45,10 +44,8 @@ class LoadingDataBaseView extends StatelessWidget {
           decoration: BoxDecoration(
               color: isShowContainer ? ColorManager.white : null,
               borderRadius: BorderRadius.circular(AppSize.s8)),
-          child:
-          const CircularProgressIndicator(
+          child: const CircularProgressIndicator(
             color: ColorManager.primary,
-
           )
           // LoadingAnimationWidget.discreteCircle(
           //     secondRingColor: ColorManager.primaryLight,
@@ -56,7 +53,7 @@ class LoadingDataBaseView extends StatelessWidget {
           //     color: ColorManager.primary,
           //     size: ScreenUtil.defaultSize.width * 0.1)
 
-      ),
+          ),
     );
   }
 }

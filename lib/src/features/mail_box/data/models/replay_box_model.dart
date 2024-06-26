@@ -1,12 +1,9 @@
-
 import 'package:architecture_ptc/src/features/cache/data/models/users.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../../core/data/models/file_model.dart';
 
-
 part 'replay_box_model.g.dart';
-
 
 ///ReplayBox
 @JsonSerializable(explicitToJson: true)
@@ -26,13 +23,16 @@ class ReplayBox {
   UserModel? sendUser;
   @JsonKey(name: "recived_user")
   UserModel? recivedUser;
-  @JsonKey(name: "count_filse",)
+  @JsonKey(
+    name: "count_filse",
+  )
   int? countFilse;
-  @JsonKey(name: "file",)
+  @JsonKey(
+    name: "file",
+  )
   List<FileModel>? files;
   @JsonKey(name: "request_id")
   int? requestId;
-
 
   factory ReplayBox.fromJson(Map<String, dynamic> json) {
     return _$ReplayBoxFromJson(json);
@@ -41,9 +41,9 @@ class ReplayBox {
   ReplayBox({
     this.id,
     required this.title,
-     this.subTitle,
-     this.showDate,
-     this.sendId,
+    this.subTitle,
+    this.showDate,
+    this.sendId,
     this.recivedId,
     this.requestId,
     this.recivedUser,
@@ -65,23 +65,13 @@ class ReplayBoxes {
 
   ReplayBoxes({required this.listReplayBox});
 }
+
 ReplayBoxes _$ReplayBoxesFromJson(json) => ReplayBoxes(
-  listReplayBox: (json as List<dynamic>)
-      .map((e) => ReplayBox.fromJson(e as Map<String, dynamic>))
-      .toList(),
-);
+      listReplayBox: (json as List<dynamic>)
+          .map((e) => ReplayBox.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
 Map<String, dynamic> _$ReplayBoxesToJson(ReplayBoxes instance) =>
     <String, dynamic>{
-      'listReplayBox':
-      instance.listReplayBox.map((e) => e.toJson()).toList(),
+      'listReplayBox': instance.listReplayBox.map((e) => e.toJson()).toList(),
     };
-
-
-
-
-
-
-
-
-
-

@@ -1,3 +1,1 @@
-enum KeyParameterRoute{
-  id
-}
+enum KeyParameterRoute { id }

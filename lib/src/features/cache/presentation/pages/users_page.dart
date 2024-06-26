@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import '../../../../../core/data/enums/key_parameter_route_enum.dart';
 import '../../../../../core/routing/app_router.dart';
@@ -20,42 +19,38 @@ class _UsersPageState extends State<UsersPage> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      users=await getUsers();
+      users = await getUsers();
       setState(() {});
     });
 
-   super.initState();
+    super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-
-        title: const Text(
-          'Users',
-          style: TextStyle(
-              color: ColorManager.primary, fontWeight: FontWeight.bold),
+        appBar: AppBar(
+          title: const Text(
+            'Users',
+            style: TextStyle(
+                color: ColorManager.primary, fontWeight: FontWeight.bold),
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      body:
-      builderItems(context)
-    );
+        body: builderItems(context));
   }
 
-  Widget builderItems(BuildContext context){
-    return
-      users==null?
-          const LoadingDataView()
-      :ListView.builder(
-        itemCount: users?.length??0,
-        itemBuilder: (context,index)=>
-            UserWidget(
-        item: '${users?[index].id??''}',
-              onTap: ()=>goRouter.pushNamed(AppRoute.detailsUser.name ,extra:  {KeyParameterRoute.id.name:users?[index].id??-1} ),
-
-            ));
+  Widget builderItems(BuildContext context) {
+    return users == null
+        ? const LoadingDataView()
+        : ListView.builder(
+            itemCount: users?.length ?? 0,
+            itemBuilder: (context, index) => UserWidget(
+                  item: '${users?[index].id ?? ''}',
+                  onTap: () => goRouter.pushNamed(AppRoute.detailsUser.name,
+                      extra: {
+                        KeyParameterRoute.id.name: users?[index].id ?? -1
+                      }),
+                ));
   }
 }
-
-

@@ -32,9 +32,6 @@ class Repository {
     }
   }
 
-
-
-
   Future<ApiResponse<BaseModel>> logout() async {
     try {
       final response = await _remoteDataSource.logout();
@@ -56,5 +53,4 @@ class Repository {
       );
     }
   }
-
 }

@@ -1,4 +1,3 @@
-
 import 'drop_base_items.dart';
 
 class DropLanguages extends DropBaseItems {
@@ -10,6 +9,4 @@ class DropLanguages extends DropBaseItems {
   factory DropLanguages() {
     return _instance;
   }
-
-
 }

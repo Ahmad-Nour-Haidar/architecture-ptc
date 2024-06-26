@@ -4,7 +4,6 @@ import '../../utils/color_manager.dart';
 import '../../utils/theme_manager.dart';
 import 'file_download_widget.dart';
 
-
 class FilesWidget extends StatelessWidget {
   const FilesWidget({super.key, required this.fileModels});
   final List<FileModel> fileModels;
@@ -25,7 +24,7 @@ class FilesWidget extends StatelessWidget {
               Icons.description,
               color: ColorManager.secondary,
             ),
-            label:  Text(
+            label: Text(
               'Files attached (${fileModels.length}) : ',
               style: const TextStyle(color: ColorManager.primary),
             ),
@@ -39,17 +38,16 @@ class FilesWidget extends StatelessWidget {
               onPressed: null,
               child: const Text(
                 'show files',
-                style: TextStyle(
-                    color: ColorManager.primary, fontSize: 12),
+                style: TextStyle(color: ColorManager.primary, fontSize: 12),
               )),
           title: const Text(''),
           children: (fileModels)
               .map(
                 (fileModel) => FileDownloadWidget(
-              file:fileModel,
-              onTap: () {},
-            ),
-          )
+                  file: fileModel,
+                  onTap: () {},
+                ),
+              )
               .toList(),
         ),
       ),

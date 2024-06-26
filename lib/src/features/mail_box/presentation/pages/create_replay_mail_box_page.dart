@@ -1,4 +1,3 @@
-
 import 'package:architecture_ptc/src/features/cache/data/models/users.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +13,7 @@ import '../cubits/replay_box_cubit/replay_box_cubit.dart';
 import '../cubits/request_box_cubit/request_box_cubit.dart';
 import '/core/utils/color_manager.dart';
 import '../../../../../core/utils/values_manager.dart';
+
 class CreateReplayBoxPage extends StatefulWidget {
   const CreateReplayBoxPage({super.key, required this.requestBox});
 
@@ -25,12 +25,12 @@ class CreateReplayBoxPage extends StatefulWidget {
 class _CreateReplayBoxPageState extends State<CreateReplayBoxPage>
     with TickerProviderStateMixin {
   late AnimationController _hideFabAnimation;
-  final titleController= TextEditingController();
-  final subTitleController= TextEditingController();
+  final titleController = TextEditingController();
+  final subTitleController = TextEditingController();
 
   final List<PlatformFile> _files = [];
-  late  List<FileModel> _fileModels = [];
-  UserModel? _user ;
+  late List<FileModel> _fileModels = [];
+  UserModel? _user;
   String? _typeModel;
 
   void pickerFile() async {
@@ -40,18 +40,19 @@ class _CreateReplayBoxPageState extends State<CreateReplayBoxPage>
       setState(() {});
     }
   }
-  Future<void> createReplayBox(BuildContext context) async {
 
+  Future<void> createReplayBox(BuildContext context) async {
     await BlocProvider.of<ReplayBoxCubit>(context).createReplayBox(context,
-        requestId:widget.requestBox.id,
+        requestId: widget.requestBox.id,
         title: titleController.value.text,
         subTitle: subTitleController.value.text,
-       fileIds: _fileModels.map((e) => e.id??-1).toList());
+        fileIds: _fileModels.map((e) => e.id ?? -1).toList());
   }
+
   @override
   void initState() {
-      _user=widget.requestBox.recivedUser ;
-     _typeModel=widget.requestBox.requestType;
+    _user = widget.requestBox.recivedUser;
+    _typeModel = widget.requestBox.requestType;
     _hideFabAnimation =
         AnimationController(vsync: this, duration: kThemeAnimationDuration);
     super.initState();
@@ -96,9 +97,8 @@ class _CreateReplayBoxPageState extends State<CreateReplayBoxPage>
   Widget build(BuildContext context) {
     return NotificationListener<ScrollNotification>(
       onNotification: _handleScrollNotification,
-      child:  Stack(
-          alignment: Alignment.topRight,
-          children: [ Column(
+      child: Stack(alignment: Alignment.topRight, children: [
+        Column(
           children: [
             Center(
               child: Container(
@@ -106,7 +106,7 @@ class _CreateReplayBoxPageState extends State<CreateReplayBoxPage>
                 height: AppSize.s4,
                 margin: const EdgeInsets.all(AppMargin.m10),
                 padding: const EdgeInsets.all(AppPadding.p4),
-                decoration:  BoxDecoration(
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: ColorManager.secondary,
                 ),
@@ -114,89 +114,84 @@ class _CreateReplayBoxPageState extends State<CreateReplayBoxPage>
             ),
             Expanded(
               child: CustomScrollView(
-                  slivers: [
-                    const SliverToBoxAdapter(
-                      child: Padding(
-                        padding: EdgeInsets.all(AppPadding.p16),
-                        child: Text(
-                          'Schedule all mails in one place',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: AppSize.s16),
-                        ),
+                slivers: [
+                  const SliverToBoxAdapter(
+                    child: Padding(
+                      padding: EdgeInsets.all(AppPadding.p16),
+                      child: Text(
+                        'Schedule all mails in one place',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: AppSize.s16),
                       ),
                     ),
-                    SliverToBoxAdapter(
-                        child: Padding(
-                      padding: const EdgeInsets.all(AppPadding.p16),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            TextFiledApp(
-                              readOnly: true,
-                              controller: TextEditingController(text:_user?.completeName ),
-                              hintText: 'Send To',
-                              fillColor: null,
-                              textFieldHintColor: null,
-                            ),
-
-                            const SizedBox(
-                              height: AppSize.s20,
-                            ),
-                            TextFiledApp(
-                              readOnly: true,
-                              controller: TextEditingController(text:_typeModel ),
-                              hintText: 'Request Type',
-                              fillColor: null,
-                              textFieldHintColor: null,
-                            ),
-
-
-
-
-                            const SizedBox(
-                              height: AppSize.s20,
-                            ),
-                            TextFiledApp(
-                              controller: titleController,
-                              hintText: 'Title',
-                              fillColor: null,
-                              textFieldHintColor: null,
-                            ),
-                            const SizedBox(
-                              height: AppSize.s20,
-                            ),
-
-
-                            FileManagerWidget(
-                              onChanged: (list)=>_fileModels=list,
-                                  //print("DDd: ${list}"),
-                              uploadFile: context.read<RequestBoxCubit>().repository.uploadRequestFiles,
-                            )
-
-                          ],
-                        ),
-                      ),
-                    )),
-                    SliverToBoxAdapter(
+                  ),
+                  SliverToBoxAdapter(
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: AppPadding.p14),
-                        child: ButtonApp(
-                          text: 'Send',
-                          onPressed: () async {
-                            await createReplayBox(context);
-                          },
-                        ),
+                    padding: const EdgeInsets.all(AppPadding.p16),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          TextFiledApp(
+                            readOnly: true,
+                            controller: TextEditingController(
+                                text: _user?.completeName),
+                            hintText: 'Send To',
+                            fillColor: null,
+                            textFieldHintColor: null,
+                          ),
+                          const SizedBox(
+                            height: AppSize.s20,
+                          ),
+                          TextFiledApp(
+                            readOnly: true,
+                            controller: TextEditingController(text: _typeModel),
+                            hintText: 'Request Type',
+                            fillColor: null,
+                            textFieldHintColor: null,
+                          ),
+                          const SizedBox(
+                            height: AppSize.s20,
+                          ),
+                          TextFiledApp(
+                            controller: titleController,
+                            hintText: 'Title',
+                            fillColor: null,
+                            textFieldHintColor: null,
+                          ),
+                          const SizedBox(
+                            height: AppSize.s20,
+                          ),
+                          FileManagerWidget(
+                            onChanged: (list) => _fileModels = list,
+                            //print("DDd: ${list}"),
+                            uploadFile: context
+                                .read<RequestBoxCubit>()
+                                .repository
+                                .uploadRequestFiles,
+                          )
+                        ],
                       ),
-                    )
-                  ],
-                ),
+                    ),
+                  )),
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: AppPadding.p14),
+                      child: ButtonApp(
+                        text: 'Send',
+                        onPressed: () async {
+                          await createReplayBox(context);
+                        },
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           ],
-        ),]
-      ),
-
+        ),
+      ]),
     );
   }
 }
-

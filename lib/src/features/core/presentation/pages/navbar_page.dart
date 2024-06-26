@@ -16,8 +16,7 @@ class NavbarPage extends StatefulWidget {
 }
 
 class _NavbarPageState extends State<NavbarPage> {
-  int activeIndex =0;
-
+  int activeIndex = 0;
 
   final List<dynamic> _icons = [
     Icons.home_outlined,
@@ -41,23 +40,20 @@ class _NavbarPageState extends State<NavbarPage> {
     _searchController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
-    return StatefulBuilder(
-      builder: (context,navbarSetState) {
-        return
-
-          Scaffold(
-              drawerScrimColor:Colors.transparent,//For not shadow in back drawer
+    return StatefulBuilder(builder: (context, navbarSetState) {
+      return Scaffold(
+          drawerScrimColor: Colors.transparent, //For not shadow in back drawer
           appBar: AppBar(
-
             elevation: 0.0,
             leadingWidth: 60,
             title: const Padding(
               padding: EdgeInsets.all(AppPadding.p6),
-              child:Text('PTC'),
+              child: Text('PTC'),
             ),
-            leading:Hero(
+            leading: Hero(
               tag: 'location-image-${AssetsManager.logoIMG}',
               child: Padding(
                 padding: const EdgeInsets.all(AppPadding.p4),
@@ -66,31 +62,27 @@ class _NavbarPageState extends State<NavbarPage> {
             ),
             actions: [
               TextButton.icon(
-                  onPressed: () {
-                    context.read<UserCubit>().logout(context);
-                  },
+                onPressed: () {
+                  context.read<UserCubit>().logout(context);
+                },
                 icon: const Icon(Icons.logout),
-                  label: const Text(
-                    'Sign Out',
-                    style: TextStyle(color: ColorManager.primary),
-                  ),)
+                label: const Text(
+                  'Sign Out',
+                  style: TextStyle(color: ColorManager.primary),
+                ),
+              )
             ],
           ),
-
-
-
           body: _widgets[activeIndex],
-            extendBody: true,
-           // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-          bottomNavigationBar:
-          NavigationBarWidget(
-            activeIndex:activeIndex,
+          extendBody: true,
+          // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+          bottomNavigationBar: NavigationBarWidget(
+            activeIndex: activeIndex,
             icons: _icons,
             onTap: (index) {
               setState(() {
                 activeIndex = index;
               });
-
             },
           )
           // BottomAppBar(
@@ -112,10 +104,7 @@ class _NavbarPageState extends State<NavbarPage> {
           //
           // ),
 
-
-
-        );
-      }
-    );
+          );
+    });
   }
 }

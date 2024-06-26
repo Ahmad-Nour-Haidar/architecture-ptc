@@ -10,10 +10,10 @@ class EmptyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Center(
       child: Text(
-              'Empty',
-              style: TextStyle(
-              color: ColorManager.primary, fontWeight: FontWeight.bold),
-          ),
+        'Empty',
+        style:
+            TextStyle(color: ColorManager.primary, fontWeight: FontWeight.bold),
+      ),
     );
 
     //   Scaffold(

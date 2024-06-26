@@ -1,8 +1,6 @@
-
 import 'package:json_annotation/json_annotation.dart';
 
 part 'info_box_model.g.dart';
-
 
 ///InfoBox
 @JsonSerializable(explicitToJson: true)
@@ -27,13 +25,3 @@ class InfoBox {
     this.countSendBoxes,
   });
 }
-
-
-
-
-
-
-
-
-
-

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/utils/assets_manager.dart';
@@ -9,7 +8,7 @@ import '../../utils/color_manager.dart';
 import '../../utils/values_manager.dart';
 
 class EmptyDataView extends StatelessWidget {
-  EmptyDataView({super.key, this.pathImage,this.text, this.height});
+  EmptyDataView({super.key, this.pathImage, this.text, this.height});
   String? pathImage;
   String? text;
   double? height;
@@ -34,7 +33,7 @@ class EmptyDataView extends StatelessWidget {
           height: AppSize.s10,
         ),
         Text(
-          text??'No Data Yet!',
+          text ?? 'No Data Yet!',
           // tr(text??'No Data Yet!'),
           style: TextStyle(
             fontSize: ScreenUtil.defaultSize.width / 16,

@@ -19,8 +19,7 @@ class DialogWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-      Material(
+    return Material(
       color: Colors.transparent,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -53,5 +52,3 @@ class DialogWidget extends StatelessWidget {
     );
   }
 }
-
-

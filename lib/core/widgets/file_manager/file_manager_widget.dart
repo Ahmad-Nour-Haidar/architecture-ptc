@@ -13,51 +13,57 @@ import 'file_download_widget.dart';
 import 'file_manager_base.dart';
 import 'file_upload_widget.dart';
 
-
 class FileManagerWidget extends StatefulWidget {
-   FileManagerWidget({super.key,  this.fileModels, this.uploadFile,  this.isShow=true, this.onChanged});
+  FileManagerWidget(
+      {super.key,
+      this.fileModels,
+      this.uploadFile,
+      this.isShow = true,
+      this.onChanged});
 
-   List<FileModel>? fileModels;
-   final bool isShow;
-   final  Function(dynamic)? onChanged;
+  List<FileModel>? fileModels;
+  final bool isShow;
+  final Function(dynamic)? onChanged;
 
-   final  Future<ApiResponse<BaseModel>> Function(BuildContext context,{required List<PlatformFile> files,String? key})?   uploadFile;
+  final Future<ApiResponse<BaseModel>> Function(BuildContext context,
+      {required List<PlatformFile> files, String? key})? uploadFile;
 
   @override
   State<FileManagerWidget> createState() => _FileManagerWidgetState();
 }
 
 class _FileManagerWidgetState extends State<FileManagerWidget> {
-  final List<PlatformFile> _files=[];
+  final List<PlatformFile> _files = [];
 
-   void pickerFile() async {
-     final pickedFile = await FilePicker.platform.pickFiles(allowMultiple: true);
-     if (pickedFile != null) {
-       _files.addAll(pickedFile.files);
-       setState(() {});
-     }
-   }
+  void pickerFile() async {
+    final pickedFile = await FilePicker.platform.pickFiles(allowMultiple: true);
+    if (pickedFile != null) {
+      _files.addAll(pickedFile.files);
+      setState(() {});
+    }
+  }
+
   late FileManagerCubit fileManagerCubit;
-@override
+  @override
   void initState() {
-  fileManagerCubit=FileManagerCubit();
-  context.read<FileManagerCubit>().init(widget.fileModels);
+    fileManagerCubit = FileManagerCubit();
+    context.read<FileManagerCubit>().init(widget.fileModels);
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-   return StatefulBuilder(builder: (context, filesState) {
+    return StatefulBuilder(builder: (context, filesState) {
       return Container(
         decoration: BoxDecoration(
-            color: ColorManager.white,
-            borderRadius: BorderRadius.circular(14)),
+            color: ColorManager.white, borderRadius: BorderRadius.circular(14)),
         child: Column(
           children: [
             ListTile(
-              title:  Text('Attached Files (${_files.length+(widget.fileModels?.length??0)}) : '),
+              title: Text(
+                  'Attached Files (${_files.length + (widget.fileModels?.length ?? 0)}) : '),
               trailing: Padding(
-                padding:  const EdgeInsets.symmetric(
-                    vertical: AppPadding.p8),
+                padding: const EdgeInsets.symmetric(vertical: AppPadding.p8),
                 child: Container(
                   width: getWidth(context) * 0.125,
                   alignment: Alignment.center,
@@ -77,49 +83,55 @@ class _FileManagerWidgetState extends State<FileManagerWidget> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: List.generate(
-                _files.length,
-                    (index) =>
-                        FileManagerBase(
-                          onChanged: widget.onChanged,//(list)=>print("DDd: ${list}"),
-                          file: _files[index],
-                            uploadFile: widget.uploadFile,// context.read<RequestBoxCubit>().repository.uploadRequestFiles,
-                            builder:( context,state,fileModel,infoFile)=>
-                            FileUploadWidget(file: infoFile??
+                  _files.length,
+                  (index) => FileManagerBase(
+                      onChanged:
+                          widget.onChanged, //(list)=>print("DDd: ${list}"),
+                      file: _files[index],
+                      uploadFile: widget
+                          .uploadFile, // context.read<RequestBoxCubit>().repository.uploadRequestFiles,
+                      builder: (context, state, fileModel, infoFile) =>
+                          FileUploadWidget(
+                            file: infoFile ??
                                 InfoFile(
-                                  name:_files[index].name,
-                                  size:'${_files[index].size}',
-                                  path:_files[index].path,
+                                  name: _files[index].name,
+                                  size: '${_files[index].size}',
+                                  path: _files[index].path,
                                 ),
-                              onTap: () {
-                                _files.removeAt(index);
-                                context.read<FileManagerCubit>().removeFileAt(index);
-                                filesState(() {});
-                              },
-                            )
-                        )
-              )..addAll(
-                  widget.fileModels?.map((fileModel) =>
-                  widget.isShow?FileDownloadWidget(file: fileModel,
-                        onTap: () {
-                          widget.fileModels?.remove(fileModel);
-                          context.read<FileManagerCubit>().removeFile(fileModel);
-                          filesState(() {});
-                        },
-                      ):
-                      FileUploadWidget(file:
-                      InfoFile(
-                        name:fileModel.name,
-                        size:'${fileModel.size}',
-                        complete: true
-                      ),
-                        onTap: () {
-                          widget.fileModels?.remove(fileModel);
-                          context.read<FileManagerCubit>().removeFile(fileModel);
-                          filesState(() {});
-                        },
-                      )
-                  )??[]
-              )..toList(),
+                            onTap: () {
+                              _files.removeAt(index);
+                              context
+                                  .read<FileManagerCubit>()
+                                  .removeFileAt(index);
+                              filesState(() {});
+                            },
+                          )))
+                ..addAll(widget.fileModels?.map((fileModel) => widget.isShow
+                        ? FileDownloadWidget(
+                            file: fileModel,
+                            onTap: () {
+                              widget.fileModels?.remove(fileModel);
+                              context
+                                  .read<FileManagerCubit>()
+                                  .removeFile(fileModel);
+                              filesState(() {});
+                            },
+                          )
+                        : FileUploadWidget(
+                            file: InfoFile(
+                                name: fileModel.name,
+                                size: '${fileModel.size}',
+                                complete: true),
+                            onTap: () {
+                              widget.fileModels?.remove(fileModel);
+                              context
+                                  .read<FileManagerCubit>()
+                                  .removeFile(fileModel);
+                              filesState(() {});
+                            },
+                          )) ??
+                    [])
+                ..toList(),
             ),
             // Visibility(
             //     visible:_files.length>0,

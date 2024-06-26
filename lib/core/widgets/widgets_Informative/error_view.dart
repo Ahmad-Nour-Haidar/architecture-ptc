@@ -133,31 +133,30 @@ class ErrorViewBase extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      assetSvg == null
-          ? SvgPicture.asset(
-          assetSvg ?? AssetsManager.notFound,
-          width: ScreenUtil.defaultSize.width / 2,
-          height: ScreenUtil.defaultSize.width / 2,
-            )
-          : Icon(
-              icon ?? Icons.report,
-              size: ScreenUtil.defaultSize.width / 3,
-              color: ColorManager.grey,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          assetSvg == null
+              ? SvgPicture.asset(
+                  assetSvg ?? AssetsManager.notFound,
+                  width: ScreenUtil.defaultSize.width / 2,
+                  height: ScreenUtil.defaultSize.width / 2,
+                )
+              : Icon(
+                  icon ?? Icons.report,
+                  size: ScreenUtil.defaultSize.width / 3,
+                  color: ColorManager.grey,
+                ),
+          const SizedBox(
+            height: AppSize.s10,
+          ),
+          Text(
+            value ?? '',
+            style: TextStyle(
+              fontSize: ScreenUtil.defaultSize.width / 16,
+              color: Colors.grey,
             ),
-      const SizedBox(
-        height: AppSize.s10,
-      ),
-      Text(
-        value ?? '',
-        style: TextStyle(
-          fontSize: ScreenUtil.defaultSize.width / 16,
-          color: Colors.grey,
-        ),
-      )
-    ],
+          )
+        ],
       ),
     );
   }

@@ -1,15 +1,13 @@
-
 import '../../../../../core/data/datasource/remote/api_response.dart';
 import '../../../../../core/data/models/base_model.dart';
 import '../../../../../core/domain/error_handler/network_exceptions.dart';
 import '../../../cache/data/models/users.dart';
 import '../../data/datasource/remote/auth_remote_data_source.dart';
 
-
 class AuthRepository {
   final AuthRemoteDataSource _remoteDataSource;
 
-  AuthRepository(this._remoteDataSource) ;
+  AuthRepository(this._remoteDataSource);
 
   Future<ApiResponse<BaseModel>> login(String email, String password) async {
     try {
@@ -22,7 +20,6 @@ class AuthRepository {
       );
     }
   }
-
 
   Future<ApiResponse<BaseModel>> register(UserModel user) async {
     try {
@@ -56,5 +53,4 @@ class AuthRepository {
       );
     }
   }
-
 }

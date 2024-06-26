@@ -1,9 +1,6 @@
-
 import 'package:json_annotation/json_annotation.dart';
 
-
 part 'type_model.g.dart';
-
 
 ///TypeModel
 @JsonSerializable(explicitToJson: true)
@@ -37,27 +34,14 @@ class TypeModels {
   Map<String, dynamic> toJson() => _$TypeModelsToJson(this);
 
   TypeModels({required this.listTypeModel});
-
 }
+
 TypeModels _$TypeModelsFromJson(json) => TypeModels(
-  listTypeModel: (json as List<dynamic>)
-      .map((e) => TypeModel.fromJson(e as Map<String, dynamic>))
-      .toList(),
-);
+      listTypeModel: (json as List<dynamic>)
+          .map((e) => TypeModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
 Map<String, dynamic> _$TypeModelsToJson(TypeModels instance) =>
     <String, dynamic>{
-      'listTypeModel':
-      instance.listTypeModel.map((e) => e.toJson()).toList(),
+      'listTypeModel': instance.listTypeModel.map((e) => e.toJson()).toList(),
     };
-
-
-
-
-
-
-
-
-
-
-
-

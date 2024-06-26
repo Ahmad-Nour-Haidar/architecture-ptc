@@ -1,7 +1,7 @@
 //final  baseUrl ="http://localhost:8080/";
 const baseServ = "https://ptc.yorkacademy.uk/";
 const baseUrl = "${baseServ}api/";
-   const storageUrl = "${baseServ}storage/";
+const storageUrl = "${baseServ}storage/";
 const user = "user/";
 const mailBox = "mailBox/";
 const request = "request";
@@ -9,7 +9,6 @@ const replay = "replay";
 const users = "users";
 
 class AppUrl {
-
   /// User
   ///*******************************************************************************
   ///<------------------------------------------------------------------------------
@@ -21,7 +20,6 @@ class AppUrl {
 
   ///------------------------------------------------------------------------------>
 
-
   ///Mail Box
   ///*******************************************************************************
   ///<------------------------------------------------------------------------------
@@ -31,22 +29,23 @@ class AppUrl {
   static const requestMailBoxById = "$baseUrl$mailBox$request/";
   static const getInfoMailBox = "$baseUrl$mailBox$request/getInfoMailBox";
   static const createRequestBox = "$baseUrl$mailBox$request/storeRequest";
-  static const uploadFileRequestBox= "$baseUrl$mailBox$request/uploadFile";
-  static const requestBoxTypeGlobal= "${baseUrl}request_type";
+  static const uploadFileRequestBox = "$baseUrl$mailBox$request/uploadFile";
+  static const requestBoxTypeGlobal = "${baseUrl}request_type";
 
   ///Replay
   static const replayMailbox = "$baseUrl$mailBox$replay";
   static const replayMailboxById = "$baseUrl$mailBox$replay/";
   static const createReplayBoxBox = "$baseUrl$mailBox$replay/storeReplay";
-  static const uploadFileReplayBox= "$baseUrl$mailBox$replay/uploadFile";
-///------------------------------------------------------------------------------>
+  static const uploadFileReplayBox = "$baseUrl$mailBox$replay/uploadFile";
 
+  ///------------------------------------------------------------------------------>
 
   ///Users
   ///*******************************************************************************
   ///<------------------------------------------------------------------------------
   static const searchUsersByTerm = "$baseUrl$users";
-///------------------------------------------------------------------------------>
+
+  ///------------------------------------------------------------------------------>
   ///
   ///*******************************************************************************
   ///<------------------------------------------------------------------------------
@@ -63,5 +62,4 @@ class AppUrl {
   ///*******************************************************************************
   ///<------------------------------------------------------------------------------
   ///------------------------------------------------------------------------------>
-
 }

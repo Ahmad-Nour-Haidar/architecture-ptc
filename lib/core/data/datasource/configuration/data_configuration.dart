@@ -1,5 +1,3 @@
-
-
 import 'package:architecture_ptc/core/data/datasource/configuration/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,47 +16,51 @@ import 'menu_items.dart';
 initDataConfiguration() async {
   _initMenuItems();
   _initDropLanguages();
-
 }
 
-
- initProviders(){
-
+initProviders() {
   return [
-    BlocProvider<SplashCubit>(create: (context) => SplashCubit(),),
+    BlocProvider<SplashCubit>(
+      create: (context) => SplashCubit(),
+    ),
     BlocProvider<UserCubit>(create: (context) => UserCubit(authRepository)),
-    BlocProvider<ReciveRequestBoxCubit>(create: (context) => ReciveRequestBoxCubit(requestBoxRepository)),
-    BlocProvider<ReplayBoxCubit>(create: (context) => ReplayBoxCubit(replayBoxRepository)),
-    BlocProvider<RequestBoxCubit>(create: (context) => RequestBoxCubit(requestBoxRepository)),
+    BlocProvider<ReciveRequestBoxCubit>(
+        create: (context) => ReciveRequestBoxCubit(requestBoxRepository)),
+    BlocProvider<ReplayBoxCubit>(
+        create: (context) => ReplayBoxCubit(replayBoxRepository)),
+    BlocProvider<RequestBoxCubit>(
+        create: (context) => RequestBoxCubit(requestBoxRepository)),
     BlocProvider<FileManagerCubit>(
-      create: (context) =>   FileManagerCubit(
-      ),
+      create: (context) => FileManagerCubit(),
     ),
   ];
 }
 
 _initMenuItems() async {
-  MenuItems menuItems=MenuItems.instance;
+  MenuItems menuItems = MenuItems.instance;
   menuItems.addAllMenuItems([
-    MenuItem(title: MenuItemEnum.add,icon: Icons.add_circle_outline),
-    MenuItem(title: MenuItemEnum.details,icon: Icons.info_outline),
-    MenuItem(title: MenuItemEnum.duplicate,icon: Icons.copy_outlined),
-    MenuItem(title: MenuItemEnum.edit,icon: Icons.edit_outlined),
-    MenuItem(title: MenuItemEnum.delete,icon: Icons.delete_outline),
-    MenuItem(title: MenuItemEnum.active,icon: Icons.check_circle_outline),
-    MenuItem(title: MenuItemEnum.deactivate,icon: Icons.remove_circle_outline),
-    MenuItem(title: MenuItemEnum.pay,icon: Icons.payment_outlined),
-    MenuItem(title: MenuItemEnum.kicked,icon: Icons.output_outlined),
-    MenuItem(title: MenuItemEnum.undo,icon: Icons.undo_outlined),
+    MenuItem(title: MenuItemEnum.add, icon: Icons.add_circle_outline),
+    MenuItem(title: MenuItemEnum.details, icon: Icons.info_outline),
+    MenuItem(title: MenuItemEnum.duplicate, icon: Icons.copy_outlined),
+    MenuItem(title: MenuItemEnum.edit, icon: Icons.edit_outlined),
+    MenuItem(title: MenuItemEnum.delete, icon: Icons.delete_outline),
+    MenuItem(title: MenuItemEnum.active, icon: Icons.check_circle_outline),
+    MenuItem(title: MenuItemEnum.deactivate, icon: Icons.remove_circle_outline),
+    MenuItem(title: MenuItemEnum.pay, icon: Icons.payment_outlined),
+    MenuItem(title: MenuItemEnum.kicked, icon: Icons.output_outlined),
+    MenuItem(title: MenuItemEnum.undo, icon: Icons.undo_outlined),
   ]);
 }
+
 _initDropLanguages() async {
-  DropLanguages dropLanguages=DropLanguages.instance;
+  DropLanguages dropLanguages = DropLanguages.instance;
   // await dropLanguages.loadItemsFromFile( AssetsManager.dropLanguagesJson);
   await dropLanguages.loadItems([
-    DropItemModel(name:"en",origin: "en",//image: AssetsManager.ukIcon
+    DropItemModel(
+      name: "en", origin: "en", //image: AssetsManager.ukIcon
     ),
-    DropItemModel(name:"ar",origin: "ar",//image: AssetsManager.arIcon
+    DropItemModel(
+      name: "ar", origin: "ar", //image: AssetsManager.arIcon
     ),
   ]);
 }

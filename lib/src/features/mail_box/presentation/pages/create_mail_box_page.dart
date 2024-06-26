@@ -1,4 +1,3 @@
-
 import 'package:architecture_ptc/src/features/cache/data/models/users.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +15,6 @@ import '/core/widgets/textfield_app.dart';
 
 import '../../../../../core/utils/values_manager.dart';
 
-
 class CreateMailBoxPage extends StatefulWidget {
   const CreateMailBoxPage({super.key});
 
@@ -24,13 +22,12 @@ class CreateMailBoxPage extends StatefulWidget {
   State<CreateMailBoxPage> createState() => _CreateMailBoxPageState();
 }
 
-class _CreateMailBoxPageState extends State<CreateMailBoxPage>
-  {
-  final titleController= TextEditingController();
-  final subTitleController= TextEditingController();
+class _CreateMailBoxPageState extends State<CreateMailBoxPage> {
+  final titleController = TextEditingController();
+  final subTitleController = TextEditingController();
   final List<PlatformFile> _files = [];
   List<FileModel> _fileModels = [];
-  UserModel? _user ;
+  UserModel? _user;
   TypeModel? _typeModel;
 
   void pickerFile() async {
@@ -40,14 +37,16 @@ class _CreateMailBoxPageState extends State<CreateMailBoxPage>
       setState(() {});
     }
   }
-  Future<void> createRequestBox() async {
 
+  Future<void> createRequestBox() async {
     await context.read<RequestBoxCubit>().createRequestBox(context,
         recivedId: _user?.id,
         title: titleController.value.text,
         subTitle: subTitleController.value.text,
-        requestTypeId: _typeModel?.id, fileIds: _fileModels.map((e) => e.id??-1).toList());
+        requestTypeId: _typeModel?.id,
+        fileIds: _fileModels.map((e) => e.id ?? -1).toList());
   }
+
   @override
   void initState() {
     super.initState();
@@ -58,115 +57,115 @@ class _CreateMailBoxPageState extends State<CreateMailBoxPage>
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-          alignment: Alignment.topRight,
-          children: [ Column(
-            children: [
-              Center(
-                child: Container(
-                  width: getWidth(context) / 8,
-                  height: AppSize.s4,
-                  margin: const EdgeInsets.all(AppMargin.m10),
-                  padding: const EdgeInsets.all(AppPadding.p4),
-                  decoration:  BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: ColorManager.secondary,
-                  ),
+      body: Stack(alignment: Alignment.topRight, children: [
+        Column(
+          children: [
+            Center(
+              child: Container(
+                width: getWidth(context) / 8,
+                height: AppSize.s4,
+                margin: const EdgeInsets.all(AppMargin.m10),
+                padding: const EdgeInsets.all(AppPadding.p4),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: ColorManager.secondary,
                 ),
               ),
-              Expanded(
-                child: CustomScrollView(
-                  slivers: [
-                    const SliverToBoxAdapter(
-                      child: Padding(
-                        padding: EdgeInsets.all(AppPadding.p16),
-                        child: Text(
-                          'Schedule all mails in one place',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: AppSize.s16),
-                        ),
+            ),
+            Expanded(
+              child: CustomScrollView(
+                slivers: [
+                  const SliverToBoxAdapter(
+                    child: Padding(
+                      padding: EdgeInsets.all(AppPadding.p16),
+                      child: Text(
+                        'Schedule all mails in one place',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: AppSize.s16),
                       ),
                     ),
-                    SliverToBoxAdapter(
-                        child: Padding(
-                          padding: const EdgeInsets.all(AppPadding.p16),
-                          child: SingleChildScrollView(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                ///ToDo code here...
-                                // AllUserDropDown(
-                                //
-                                //   // builder: ({BuildContext? context,CategoryModel? item})=>SizedBox.shrink(),
-                                //     onSelectionChanged: (selected){
-                                //       _user=selected;
-                                //       print(selected);
-                                //     }),
-                                // const SizedBox(
-                                //   height: AppSize.s20,
-                                // ),
-                                ///ToDo code here...
-                                // TypeModelDropDown(
-                                //     nameDropDown: "Request Type",
-                                //
-                                //     onSelectionChanged: (selected){
-                                //       _typeModel=selected;
-                                //     }, funGetItems: ({page, term})=> context.read<RequestBoxCubit>().repository.getRequestBoxTypes(page: page,term: term)),
-      
-      
-      
-                                // const SizedBox(
-                                //   height: AppSize.s20,
-                                // ),
-                                TextFiledApp(
-                                  controller: titleController,
-                                  hintText: 'Title',
-                                  fillColor: null,
-                                  textFieldHintColor: null,
-                                ),
-                                const SizedBox(
-                                  height: AppSize.s20,
-                                ),
-                                TextFiledApp(
-                                  controller: subTitleController,
-                                  hintText: 'Sub Title',
-                                  fillColor: null,
-                                  textFieldHintColor: null,
-                                ),
-                                const SizedBox(
-                                  height: AppSize.s20,
-                                ),
-      
-                                FileManagerWidget(
-                                  onChanged: (list)=>_fileModels=list,
-                                  //print("DDd: ${list}"),
-                                  uploadFile: context.read<RequestBoxCubit>().repository.uploadRequestFiles,
-                                )
-                              ],
-                            ),
-                          ),
-                        )),
-                    SliverToBoxAdapter(
+                  ),
+                  SliverToBoxAdapter(
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: AppPadding.p14),
-                        child: ButtonApp(
-                          text: 'Send',
-                          onPressed: () async {
-                            await createRequestBox();
-                          },
-                        ),
+                    padding: const EdgeInsets.all(AppPadding.p16),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ///ToDo code here...
+                          // AllUserDropDown(
+                          //
+                          //   // builder: ({BuildContext? context,CategoryModel? item})=>SizedBox.shrink(),
+                          //     onSelectionChanged: (selected){
+                          //       _user=selected;
+                          //       print(selected);
+                          //     }),
+                          // const SizedBox(
+                          //   height: AppSize.s20,
+                          // ),
+                          ///ToDo code here...
+                          // TypeModelDropDown(
+                          //     nameDropDown: "Request Type",
+                          //
+                          //     onSelectionChanged: (selected){
+                          //       _typeModel=selected;
+                          //     }, funGetItems: ({page, term})=> context.read<RequestBoxCubit>().repository.getRequestBoxTypes(page: page,term: term)),
+
+                          // const SizedBox(
+                          //   height: AppSize.s20,
+                          // ),
+                          TextFiledApp(
+                            controller: titleController,
+                            hintText: 'Title',
+                            fillColor: null,
+                            textFieldHintColor: null,
+                          ),
+                          const SizedBox(
+                            height: AppSize.s20,
+                          ),
+                          TextFiledApp(
+                            controller: subTitleController,
+                            hintText: 'Sub Title',
+                            fillColor: null,
+                            textFieldHintColor: null,
+                          ),
+                          const SizedBox(
+                            height: AppSize.s20,
+                          ),
+
+                          FileManagerWidget(
+                            onChanged: (list) => _fileModels = list,
+                            //print("DDd: ${list}"),
+                            uploadFile: context
+                                .read<RequestBoxCubit>()
+                                .repository
+                                .uploadRequestFiles,
+                          )
+                        ],
                       ),
-                    )
-                  ],
-                ),
+                    ),
+                  )),
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: AppPadding.p14),
+                      child: ButtonApp(
+                        text: 'Send',
+                        onPressed: () async {
+                          await createRequestBox();
+                        },
+                      ),
+                    ),
+                  )
+                ],
               ),
-            ],
-          ),]
-      ),
+            ),
+          ],
+        ),
+      ]),
     );
   }
 }
@@ -188,11 +187,11 @@ class FileUploadWidget extends StatelessWidget {
     return ListTile(
       trailing: isComplete
           ? IconButton(
-          onPressed: onTap,
-          icon: const Icon(
-            Icons.delete,
-            color: ColorManager.error,
-          ))
+              onPressed: onTap,
+              icon: const Icon(
+                Icons.delete,
+                color: ColorManager.error,
+              ))
           : null,
       leading: const CircleAvatar(
         child: Icon(
@@ -202,12 +201,12 @@ class FileUploadWidget extends StatelessWidget {
       title: isComplete
           ? Text(file.name ?? '')
           : LinearPercentIndicator(
-        padding: EdgeInsets.zero,
-        animation: true,
-        curve: Curves.easeInOut,
-        percent: 0.5,
-        progressColor: ColorManager.primary,
-      ),
+              padding: EdgeInsets.zero,
+              animation: true,
+              curve: Curves.easeInOut,
+              percent: 0.5,
+              progressColor: ColorManager.primary,
+            ),
       subtitle: Text('${file.size ?? 0}'),
     );
   }

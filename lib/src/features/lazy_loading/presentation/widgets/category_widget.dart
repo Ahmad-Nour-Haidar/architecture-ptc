@@ -1,8 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/utils/color_manager.dart';
 import '../../../../../core/utils/values_manager.dart';
+
 class ItemWidget extends StatelessWidget {
   const ItemWidget({
     super.key,
@@ -10,8 +10,6 @@ class ItemWidget extends StatelessWidget {
   });
 
   final String item;
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +28,11 @@ class ItemWidget extends StatelessWidget {
           ]),
       child: IntrinsicHeight(
         child: SizedBox(
-            width: ScreenUtil.defaultSize.width /2,
+            width: ScreenUtil.defaultSize.width / 2,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppPadding.p8),
               child: Text(
-                item ,
+                item,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
@@ -42,8 +40,7 @@ class ItemWidget extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            )
-        ),
+            )),
       ),
     );
   }

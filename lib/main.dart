@@ -6,14 +6,16 @@ import 'src/app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  HttpOverrides.global= MyHttpoverrides();
+  HttpOverrides.global = MyHttpoverrides();
 
-  runApp( const PTCMyApp());
+  runApp(const PTCMyApp());
 }
-class MyHttpoverrides extends HttpOverrides{
+
+class MyHttpoverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
-    return super.createHttpClient(context)..badCertificateCallback =
-        (X509Certificate cert, String host, int port)=>true;
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }

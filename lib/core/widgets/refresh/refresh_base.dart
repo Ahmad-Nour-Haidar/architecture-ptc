@@ -10,16 +10,14 @@ class RefreshBase extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      displacement: 1,
+        displacement: 1,
         color: ColorManager.white,
         backgroundColor: ColorManager.primary,
-
         onRefresh: onRefresh,
-    child:  CustomScrollView(
-      shrinkWrap:true,
-      slivers: [
-      SliverFillRemaining(
-      child: child,)]
-    ));
+        child: CustomScrollView(shrinkWrap: true, slivers: [
+          SliverFillRemaining(
+            child: child,
+          )
+        ]));
   }
 }

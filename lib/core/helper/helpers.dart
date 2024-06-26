@@ -3,7 +3,7 @@ import '../data/enums/activity_status.dart';
 import '../data/enums/date_validity.dart';
 import 'package:get/get.dart';
 
-isAdmin(String? accountType)=> accountType=='Admin'||accountType==null;
+isAdmin(String? accountType) => accountType == 'Admin' || accountType == null;
 
 bool detectLang({required String text}) {
   // String pattern = r'^(?:[a-zA-Z]|\P{L})+$';
@@ -11,19 +11,20 @@ bool detectLang({required String text}) {
   RegExp regex = RegExp(pattern, unicode: true);
   return regex.hasMatch(text);
 }
+
 String formatText(dynamic value) {
- if(value is String) {
-   return (value).tr;
- } else if(value is DateTime)
-   return DateFormat('dd MMM, yyyy').format(value);
- else if(value is Enum)
-   return formatEnum(value);
- else if(value is int)
-   return value.toString();
- else if(value is double)
-   return (value).toStringAsFixed(2);
- else
-   return 'Unknown';
+  if (value is String) {
+    return (value).tr;
+  } else if (value is DateTime)
+    return DateFormat('dd MMM, yyyy').format(value);
+  else if (value is Enum)
+    return formatEnum(value);
+  else if (value is int)
+    return value.toString();
+  else if (value is double)
+    return (value).toStringAsFixed(2);
+  else
+    return 'Unknown';
   // switch(value){
   //   case String:
   //     return tr(value);
@@ -41,15 +42,17 @@ String formatText(dynamic value) {
 }
 
 String formatEnum(Enum? value) {
-  return (value?.name.tr??'');
+  return (value?.name.tr ?? '');
 }
-String formatDate(DateTime? date){
-  return date==null?'':DateFormat('yyyy - MM - dd').format(date);
+
+String formatDate(DateTime? date) {
+  return date == null ? '' : DateFormat('yyyy - MM - dd').format(date);
 }
+
 String formatEndDate(DateTime? endDate) {
-    return endDate != null
-    ? DateFormat('dd MMM, yyyy').format(endDate)
-        : 'At present';
+  return endDate != null
+      ? DateFormat('dd MMM, yyyy').format(endDate)
+      : 'At present';
 }
 
 DateValidity checkDateValidity(DateTime? date) {
@@ -61,6 +64,7 @@ DateValidity checkDateValidity(DateTime? date) {
     return DateValidity.expired;
   }
 }
+
 ActivityStatus checkDateActivityStatus(DateTime? date) {
   if (date == null) {
     return ActivityStatus.inactive;

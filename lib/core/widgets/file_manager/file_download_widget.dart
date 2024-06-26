@@ -9,9 +9,7 @@ class FileDownloadWidget extends StatelessWidget {
     super.key,
     required this.file,
     this.onTap,
-
   });
-
 
   final FileModel file;
   final VoidCallback? onTap;

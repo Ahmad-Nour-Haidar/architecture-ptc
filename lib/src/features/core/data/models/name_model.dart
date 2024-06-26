@@ -1,7 +1,5 @@
-
 import 'package:json_annotation/json_annotation.dart';
 part 'name_model.g.dart';
-
 
 ///NameModel
 @JsonSerializable(explicitToJson: true)
@@ -22,7 +20,7 @@ class NameModel {
     required this.origin,
     required this.name,
   });
-  factory NameModel.init()=>NameModel(origin: '', name: '');
+  factory NameModel.init() => NameModel(origin: '', name: '');
 }
 
 //@JsonSerializable(explicitToJson: true)
@@ -36,27 +34,14 @@ class NameModels {
   Map<String, dynamic> toJson() => _$NameModelsToJson(this);
 
   NameModels({required this.listNameModel});
-
 }
+
 NameModels _$NameModelsFromJson(json) => NameModels(
-  listNameModel: (json as List<dynamic>)
-      .map((e) => NameModel.fromJson(e as Map<String, dynamic>))
-      .toList(),
-);
+      listNameModel: (json as List<dynamic>)
+          .map((e) => NameModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
 Map<String, dynamic> _$NameModelsToJson(NameModels instance) =>
     <String, dynamic>{
-      'listNameModel':
-      instance.listNameModel.map((e) => e.toJson()).toList(),
+      'listNameModel': instance.listNameModel.map((e) => e.toJson()).toList(),
     };
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,7 +1,1 @@
-enum DefaultStatus {
-  pending,
-  accepted,
-  rejected,
-  progress,
-  unknown
-}
+enum DefaultStatus { pending, accepted, rejected, progress, unknown }

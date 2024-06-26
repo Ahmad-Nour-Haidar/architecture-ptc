@@ -10,8 +10,8 @@ class LanguagesItems {
     _item ??= await _loadData();
     return _item!;
   }
-  Future<List<String>> _loadData() async {
 
+  Future<List<String>> _loadData() async {
     return await getLanguages();
   }
 }

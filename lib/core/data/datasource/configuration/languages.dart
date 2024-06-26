@@ -1,9 +1,10 @@
 class LanguageLocal {
   static LanguageLocal? instance;
-  static LanguageLocal getLanguageLocal(){
+  static LanguageLocal getLanguageLocal() {
     instance ??= LanguageLocal();
     return instance!;
   }
+
   final isoLangs = {
     "ab": {"name": "Abkhaz", "nativeName": "аҧсуа"},
     "aa": {"name": "Afar", "nativeName": "Afaraf"},
@@ -143,7 +144,7 @@ class LanguageLocal {
     "oj": {"name": "Ojibwe, Ojibwa", "nativeName": "ᐊᓂᔑᓈᐯᒧᐎᓐ"},
     "cu": {
       "name":
-      "Old Church Slavonic, Church Slavic, Church Slavonic, Old Bulgarian, Old Slavonic",
+          "Old Church Slavonic, Church Slavic, Church Slavonic, Old Bulgarian, Old Slavonic",
       "nativeName": "ѩзыкъ словѣньскъ"
     },
     "om": {"name": "Oromo", "nativeName": "Afaan Oromoo"},

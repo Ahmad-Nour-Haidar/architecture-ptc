@@ -8,7 +8,7 @@ class UserState with _$UserState {
   const factory UserState.loading() = _Loading;
   const factory UserState.upload() = _Upload;
   const factory UserState.updatePassword() = _UpdatePassword;
-  const factory UserState.failure(NetworkExceptions? networkException) = _Failure;
-  const factory UserState.success(UserModel? data,String? message) = _Success;
+  const factory UserState.failure(NetworkExceptions? networkException) =
+      _Failure;
+  const factory UserState.success(UserModel? data, String? message) = _Success;
 }
-

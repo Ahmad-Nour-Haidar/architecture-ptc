@@ -1,4 +1,3 @@
-
 import 'package:json_annotation/json_annotation.dart';
 part 'users.g.dart';
 
@@ -9,7 +8,7 @@ class UserModel {
   @JsonKey(name: "first_name")
   String? firstName;
   @JsonKey(name: "last_name")
-String? lastName;
+  String? lastName;
   @JsonKey(name: "complete_name")
   String get completeName => "$firstName $lastName";
 
@@ -23,7 +22,7 @@ String? lastName;
   @JsonKey(name: "access_token")
   String? token;
   @JsonKey(name: "image")
-String? image;
+  String? image;
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return _$UserModelFromJson(json);
@@ -31,7 +30,7 @@ String? image;
 
   Map<String, dynamic> toJson() => _$UserModelToJson(this);
 
-UserModel({
+  UserModel({
     this.id,
     this.email,
     this.firstName,
@@ -41,4 +40,3 @@ UserModel({
     this.image,
   });
 }
-

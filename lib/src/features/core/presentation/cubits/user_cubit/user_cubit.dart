@@ -16,7 +16,6 @@ import '../../../../../../core/routing/app_router.dart';
 import '../../../../../../core/widgets/constants.dart';
 import '../../../../auth/domain/repositories/auth_repository.dart';
 
-
 part 'user_state.dart';
 part 'user_cubit.freezed.dart';
 
@@ -29,15 +28,12 @@ class UserCubit extends Cubit<UserState> {
   String? emailOtp;
   String? codeOtp;
 
-
-
-
-  void _initUser(BuildContext context) {
-  }
+  void _initUser(BuildContext context) {}
   Future<void> _saveUser(BuildContext context) async {
     emit(const UserState.save());
     AppStorage.instance.writeData(AppStorage.TOKEN, user?.token);
-    AppStorage.instance.writeData(AppStorage.LOGIN_TIME, DateTime.now().toIso8601String());
+    AppStorage.instance
+        .writeData(AppStorage.LOGIN_TIME, DateTime.now().toIso8601String());
   }
 
   Future<void> disposeUser(BuildContext context) async {
@@ -45,7 +41,6 @@ class UserCubit extends Cubit<UserState> {
     AppStorage.instance.removeData(AppStorage.TOKEN);
     AppStorage.instance.removeData(AppStorage.LOGIN_TIME);
     goRouter.pushReplacementNamed(AppRoute.splash.name);
-  
   }
 
   Future<void> login(BuildContext context,
@@ -65,21 +60,20 @@ class UserCubit extends Cubit<UserState> {
           UserState.success(user!, data.message),
         );
         await _saveUser(context);
-        Constants.onSuccess(context,message: data.message);
+        Constants.onSuccess(context, message: data.message);
         goRouter.pop();
-          goRouter.pushReplacementNamed(AppRoute.navbar.name);
+        goRouter.pushReplacementNamed(AppRoute.navbar.name);
       },
       failure: (networkException) {
         goRouter.pop();
         emit(
           UserState.failure(networkException),
         );
-        Constants.onFailure(context,message: NetworkExceptions.getErrorMessage(networkException));
-
+        Constants.onFailure(context,
+            message: NetworkExceptions.getErrorMessage(networkException));
       },
     );
   }
-
 
   Future<void> logout(BuildContext context) async {
     emit(
@@ -94,34 +88,33 @@ class UserCubit extends Cubit<UserState> {
         emit(
           UserState.success(null, data.message),
         );
-        Constants.onSuccess(context,message: data.message);
+        Constants.onSuccess(context, message: data.message);
 
         goRouter.pop();
-          // Navigator.pop(context);
+        // Navigator.pop(context);
         await disposeUser(context);
-
       },
       failure: (networkException) async {
-
         goRouter.pop();
-          // Navigator.pop(context);
+        // Navigator.pop(context);
         emit(
           UserState.failure(networkException),
         );
 
-        Constants.onNetworkFailure(context,networkException:networkException);
+        Constants.onNetworkFailure(context, networkException: networkException);
       },
     );
   }
 
-  Future<void> register(BuildContext context,
-      {required String email,
-        required String password,
-        required String firstName,
-        required String lastName,
-        required String image,
-        String? aboutMe,
-      }) async {
+  Future<void> register(
+    BuildContext context, {
+    required String email,
+    required String password,
+    required String firstName,
+    required String lastName,
+    required String image,
+    String? aboutMe,
+  }) async {
     emit(
       const UserState.loading(),
     );
@@ -132,7 +125,6 @@ class UserCubit extends Cubit<UserState> {
         firstName: firstName,
         lastName: lastName,
         password: password,
-
         image: image,
         about: aboutMe));
     response.when(
@@ -142,20 +134,23 @@ class UserCubit extends Cubit<UserState> {
           UserState.success(user!, data.message),
         );
         await _saveUser(context);
-       goRouter.pop();
+        goRouter.pop();
         // if (user!.is_verified != null && !user!.is_verified!)
         //   goRouter.pushNamed(AppRoute.verifyEmail.name);
         // else
-          goRouter.pushReplacementNamed(AppRoute.navbar.name);
-   },
+        goRouter.pushReplacementNamed(AppRoute.navbar.name);
+      },
       failure: (networkException) {
         goRouter.pop();
-        emit(UserState.failure(networkException),);
-        Constants.onFailure(context,message: NetworkExceptions.getErrorMessage(networkException));
-
+        emit(
+          UserState.failure(networkException),
+        );
+        Constants.onFailure(context,
+            message: NetworkExceptions.getErrorMessage(networkException));
       },
     );
   }
+
   Future<void> getProfile(
     BuildContext context,
   ) async {
@@ -172,12 +167,13 @@ class UserCubit extends Cubit<UserState> {
         goRouter.pushReplacementNamed(AppRoute.navbar.name);
       },
       failure: (networkException) async {
-        emit(UserState.failure(networkException),);
-        Constants.onFailure(context,message: NetworkExceptions.getErrorMessage(networkException));
+        emit(
+          UserState.failure(networkException),
+        );
+        Constants.onFailure(context,
+            message: NetworkExceptions.getErrorMessage(networkException));
         goRouter.pushReplacementNamed(AppRoute.login.name);
       },
     );
   }
-
-
 }

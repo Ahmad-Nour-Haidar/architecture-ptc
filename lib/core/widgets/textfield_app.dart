@@ -86,9 +86,9 @@ class _TextFiledAppState extends State<TextFiledApp> {
           prefixIcon: widget.iconData == null
               ? null
               : Icon(
-            widget.iconData,
-           // size:  AppSize.s24,
-          ),
+                  widget.iconData,
+                  // size:  AppSize.s24,
+                ),
           suffixIcon: widget.suffixIcon
               ? IconButton(
                   onPressed: () {

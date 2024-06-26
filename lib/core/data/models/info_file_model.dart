@@ -1,12 +1,9 @@
-
 import 'package:json_annotation/json_annotation.dart';
 part 'info_file_model.g.dart';
-
 
 ///InfoFile
 @JsonSerializable(explicitToJson: true)
 class InfoFile {
-
   @JsonKey(name: "path")
   String? path;
   @JsonKey(name: "name")
@@ -29,19 +26,11 @@ class InfoFile {
   Map<String, dynamic> toJson() => _$InfoFileToJson(this);
 
   InfoFile(
-      {
-
-        this.name,
-        this.size,
-        this.path,
-        this.key,
-        this.progress,
-        this.complete = false,
-        this.run});
+      {this.name,
+      this.size,
+      this.path,
+      this.key,
+      this.progress,
+      this.complete = false,
+      this.run});
 }
-
-
-
-
-
-

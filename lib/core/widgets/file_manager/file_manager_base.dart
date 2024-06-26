@@ -10,43 +10,60 @@ import '../../data/models/base_model.dart';
 import '../../data/models/info_file_model.dart';
 
 class FileManagerBase extends StatefulWidget {
-  const FileManagerBase({super.key, required this.builder,  this.fileModel,  this.uploadFile, this.onChanged, this.file,});
+  const FileManagerBase({
+    super.key,
+    required this.builder,
+    this.fileModel,
+    this.uploadFile,
+    this.onChanged,
+    this.file,
+  });
   final FileModel? fileModel;
   final PlatformFile? file;
-  final Widget Function(BuildContext context,UploadManagerState state,FileModel?,InfoFile?)  builder;
-  final  Future<ApiResponse<BaseModel>> Function(BuildContext context,{required List<PlatformFile> files,String? key})?  uploadFile;
-  final  Function(dynamic)? onChanged;
+  final Widget Function(
+          BuildContext context, UploadManagerState state, FileModel?, InfoFile?)
+      builder;
+  final Future<ApiResponse<BaseModel>> Function(BuildContext context,
+      {required List<PlatformFile> files, String? key})? uploadFile;
+  final Function(dynamic)? onChanged;
 
   @override
   State<FileManagerBase> createState() => _FileManagerBaseState();
 }
 
 class _FileManagerBaseState extends State<FileManagerBase> {
-   InfoFile? infoFile;
+  InfoFile? infoFile;
 
-  uploadFile(context){
-    if(widget.file!=null&&infoFile==null){
-      infoFile=InfoFile(name: widget.file!.name,path:  widget.file!.path,size: '${widget.file!.size}');
-      BlocProvider.of<UploadManagerCubit>(context).initFileWithoutKey(file: infoFile!);
-      widget.uploadFile!=null?BlocProvider.of<FileManagerCubit>(context).uploadFile(context,files: [widget.file!],infoFile: infoFile!, uploadFile: widget.uploadFile!):'';
+  uploadFile(context) {
+    if (widget.file != null && infoFile == null) {
+      infoFile = InfoFile(
+          name: widget.file!.name,
+          path: widget.file!.path,
+          size: '${widget.file!.size}');
+      BlocProvider.of<UploadManagerCubit>(context)
+          .initFileWithoutKey(file: infoFile!);
+      widget.uploadFile != null
+          ? BlocProvider.of<FileManagerCubit>(context).uploadFile(context,
+              files: [widget.file!],
+              infoFile: infoFile!,
+              uploadFile: widget.uploadFile!)
+          : '';
     }
   }
+
   @override
   Widget build(BuildContext context) {
-
-    return  BlocListener<FileManagerCubit,FileManagerState>(
-        listener: (context,state)=>state.whenOrNull(change: widget.onChanged,),
-      child:  BlocProvider<UploadManagerCubit>(
-        create:(context) =>UploadManagerCubit() ,
-          child: BlocBuilder<UploadManagerCubit,UploadManagerState>(
-              builder:(context,state){
-                uploadFile(context);
-             return widget.builder( context,state,widget.fileModel,infoFile);
-              }
-
-          )
+    return BlocListener<FileManagerCubit, FileManagerState>(
+      listener: (context, state) => state.whenOrNull(
+        change: widget.onChanged,
       ),
-
+      child: BlocProvider<UploadManagerCubit>(
+          create: (context) => UploadManagerCubit(),
+          child: BlocBuilder<UploadManagerCubit, UploadManagerState>(
+              builder: (context, state) {
+            uploadFile(context);
+            return widget.builder(context, state, widget.fileModel, infoFile);
+          })),
     );
   }
 }

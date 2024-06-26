@@ -10,6 +10,7 @@ mixin DateConversionMixin {
     });
     return json;
   }
+
   // تحويل التاريخ UTC إلى التاريخ المحلي عند قراءته من JSON
   static Map<String, dynamic> fromJsonWithLocal(Map<String, dynamic> json) {
     json.forEach((key, value) {

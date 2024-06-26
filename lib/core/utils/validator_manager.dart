@@ -26,7 +26,6 @@ class ValidatorManager {
   }
 
   String? validatePhone(String value) {
-
     if (value.isEmpty) {
       return 'Please enter your phone number';
     }
@@ -39,7 +38,6 @@ class ValidatorManager {
   String? validatePassword(String value) {
     // Define your password criteria
     const int minLength = 8;
-
 
     // Check for empty input
     if (value.isEmpty) {
@@ -89,8 +87,6 @@ class ValidatorManager {
     // Passwords match
     return null;
   }
-
-
 }
 
 class RegularExpressions {

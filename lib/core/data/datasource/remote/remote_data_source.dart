@@ -4,7 +4,6 @@ import '../../../domain/services/api_service.dart';
 import '../../../utils/app_url.dart';
 import '../../models/base_model.dart';
 
-
 class RemoteDataSource {
   final ApiServices _apiServices;
 
@@ -41,13 +40,11 @@ class RemoteDataSource {
     );
   }
 
-
   Future<BaseModel> logout() async {
     final response = await _apiServices.delete(AppUrl.logout, hasToken: true);
 
     return BaseModel(data: null, message: 'Done logout');
   }
-
 
   ///
   Future<BaseModel> getProfile() async {
@@ -57,6 +54,4 @@ class RemoteDataSource {
       (json) => UserModel.fromJson(json),
     );
   }
-
-
 }

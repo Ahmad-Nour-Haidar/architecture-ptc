@@ -1,10 +1,6 @@
-
 import 'package:json_annotation/json_annotation.dart';
 
-
 part 'file_model.g.dart';
-
-
 
 ///FileModel
 @JsonSerializable(explicitToJson: true)
@@ -30,10 +26,10 @@ class FileModel {
   FileModel({
     this.id,
     this.path,
-     this.name,
-     this.size,
-     this.type,
-     this.sub_type,
+    this.name,
+    this.size,
+    this.type,
+    this.sub_type,
   });
 }
 
@@ -49,36 +45,23 @@ class FileModels {
 
   FileModels({required this.listFileModel});
 
-  getFileIds(){
-    List<int> listFileIds=[];
-    for(FileModel fileModel in listFileModel) {
-      if(fileModel.id!=null) {
+  getFileIds() {
+    List<int> listFileIds = [];
+    for (FileModel fileModel in listFileModel) {
+      if (fileModel.id != null) {
         listFileIds.add(fileModel.id!);
-    }
       }
+    }
     return listFileIds;
   }
-
 }
+
 FileModels _$FileModelsFromJson(json) => FileModels(
-  listFileModel: (json as List<dynamic>)
-      .map((e) => FileModel.fromJson(e as Map<String, dynamic>))
-      .toList(),
-);
+      listFileModel: (json as List<dynamic>)
+          .map((e) => FileModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
 Map<String, dynamic> _$FileModelsToJson(FileModels instance) =>
     <String, dynamic>{
-      'listFileModel':
-      instance.listFileModel.map((e) => e.toJson()).toList(),
+      'listFileModel': instance.listFileModel.map((e) => e.toJson()).toList(),
     };
-
-
-
-
-
-
-
-
-
-
-
-

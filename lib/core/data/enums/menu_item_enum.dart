@@ -9,5 +9,4 @@ enum MenuItemEnum {
   pay,
   kicked,
   undo,
-
 }

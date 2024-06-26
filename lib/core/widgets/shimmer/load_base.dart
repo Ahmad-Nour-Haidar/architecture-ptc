@@ -8,16 +8,14 @@ class LoadBase extends StatelessWidget {
   final Widget? child;
   @override
   Widget build(BuildContext context) {
-    return  Shimmer.fromColors(
+    return Shimmer.fromColors(
       // baseColor: Theme.of(context).primaryColor.withOpacity(.20)!,
       // highlightColor: Theme.of(context).primaryColor.withOpacity(.10),
 
       baseColor: ColorManager.grey.withOpacity(.90),
-      highlightColor:  ColorManager.grey.withOpacity(.30),
+      highlightColor: ColorManager.grey.withOpacity(.30),
       // enabled: _enabled,
-      child: child??const SizedBox.shrink(),
+      child: child ?? const SizedBox.shrink(),
     );
   }
-
-
 }

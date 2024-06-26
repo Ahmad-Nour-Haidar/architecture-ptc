@@ -6,12 +6,11 @@ class IconWithText extends StatelessWidget {
   const IconWithText({
     super.key,
     required this.text,
-     this.icon,
+    this.icon,
     this.iconSize = 14.0,
     this.textColor,
-    this.fontSize=10,
+    this.fontSize = 10,
     this.iconColor,
-
   });
 
   final IconData? icon;
@@ -23,22 +22,21 @@ class IconWithText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Row(
+    return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        if(icon!=null)
-        Icon(
-          icon,
-          size: iconSize,
-          color: iconColor,
-        ),
+        if (icon != null)
+          Icon(
+            icon,
+            size: iconSize,
+            color: iconColor,
+          ),
         const SizedBox(
           width: AppSize.s1_5,
         ),
         Flexible(
           child: Text(
             text,
-
             style: TextStyle(
               fontSize: fontSize,
               color: textColor,
@@ -50,4 +48,3 @@ class IconWithText extends StatelessWidget {
     );
   }
 }
-

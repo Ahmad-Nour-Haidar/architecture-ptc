@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/color_manager.dart';
@@ -19,39 +18,33 @@ class _CategoriesPageState extends State<CategoriesPage> {
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       // categories=await getCategories();
-      categories=await CategoryItems.instance.item;
+      categories = await CategoryItems.instance.item;
       setState(() {});
     });
 
-   super.initState();
+    super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-
-        title: const Text(
-          'Categories',
-          style: TextStyle(
-              color: ColorManager.primary, fontWeight: FontWeight.bold),
+        appBar: AppBar(
+          title: const Text(
+            'Categories',
+            style: TextStyle(
+                color: ColorManager.primary, fontWeight: FontWeight.bold),
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      body:
-      builderCourses(context)
-    );
+        body: builderCourses(context));
   }
 
-  Widget builderCourses(BuildContext context){
-    return
-      categories==null?
-          const LoadingDataView()
-      :ListView.builder(
-        itemCount: categories?.length??0,
-        itemBuilder: (context,index)=>
-            ItemWidget(
-        item: categories?[index]??''));
+  Widget builderCourses(BuildContext context) {
+    return categories == null
+        ? const LoadingDataView()
+        : ListView.builder(
+            itemCount: categories?.length ?? 0,
+            itemBuilder: (context, index) =>
+                ItemWidget(item: categories?[index] ?? ''));
   }
 }
-
-

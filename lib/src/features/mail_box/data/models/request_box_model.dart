@@ -1,13 +1,10 @@
-
 import 'package:architecture_ptc/src/features/mail_box/data/models/replay_box_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../../cache/data/models/users.dart';
 import '../../../core/data/models/file_model.dart';
 
-
 part 'request_box_model.g.dart';
-
 
 ///RequestBox
 @JsonSerializable(explicitToJson: true)
@@ -33,14 +30,18 @@ class RequestBox {
   UserModel? recivedUser;
   @JsonKey(name: "count_replay_boxes")
   int? countReplayBoxes;
-  @JsonKey(name: "count_filse",)
+  @JsonKey(
+    name: "count_filse",
+  )
   int? countFilse;
-  @JsonKey(name: "files",)
+  @JsonKey(
+    name: "files",
+  )
   List<FileModel>? files;
-  @JsonKey(name: "replay_boxes",)
+  @JsonKey(
+    name: "replay_boxes",
+  )
   List<ReplayBox>? replayBoxes;
-
-
 
   factory RequestBox.fromJson(Map<String, dynamic> json) {
     return _$RequestBoxFromJson(json);
@@ -49,9 +50,9 @@ class RequestBox {
   RequestBox({
     this.id,
     required this.title,
-     this.subTitle,
-     this.showDate,
-     this.sendId,
+    this.subTitle,
+    this.showDate,
+    this.sendId,
     this.recivedId,
     this.requestTypeId,
     this.recivedUser,
@@ -68,7 +69,7 @@ class RequestBox {
 class RequestBoxes {
   List<RequestBox> listRequestBox;
 
-  factory RequestBoxes.fromJson( json) {
+  factory RequestBoxes.fromJson(json) {
     return _$RequestBoxesFromJson(json);
   }
 
@@ -76,23 +77,13 @@ class RequestBoxes {
 
   RequestBoxes({required this.listRequestBox});
 }
+
 RequestBoxes _$RequestBoxesFromJson(json) => RequestBoxes(
-  listRequestBox: (json as List<dynamic>)
-      .map((e) => RequestBox.fromJson(e as Map<String, dynamic>))
-      .toList(),
-);
+      listRequestBox: (json as List<dynamic>)
+          .map((e) => RequestBox.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
 Map<String, dynamic> _$RequestBoxesToJson(RequestBoxes instance) =>
     <String, dynamic>{
-      'listRequestBox':
-      instance.listRequestBox.map((e) => e.toJson()).toList(),
+      'listRequestBox': instance.listRequestBox.map((e) => e.toJson()).toList(),
     };
-
-
-
-
-
-
-
-
-
-

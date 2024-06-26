@@ -1,9 +1,5 @@
-
 import 'package:json_annotation/json_annotation.dart';
 part 'models.g.dart';
-
-
-
 
 ///MetaList
 @JsonSerializable(explicitToJson: true)
@@ -60,5 +56,3 @@ class LinksList {
     this.last,
   });
 }
-
-

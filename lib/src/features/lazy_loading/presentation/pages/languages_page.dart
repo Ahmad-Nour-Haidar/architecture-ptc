@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/color_manager.dart';
@@ -18,40 +17,34 @@ class _LanguagesPageState extends State<LanguagesPage> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-       // languages=await getLanguages();
-      languages=await LanguagesItems.instance.item;
+      // languages=await getLanguages();
+      languages = await LanguagesItems.instance.item;
       setState(() {});
     });
 
-   super.initState();
+    super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-
-        title: const Text(
-          'Languages',
-          style: TextStyle(
-              color: ColorManager.primary, fontWeight: FontWeight.bold),
+        appBar: AppBar(
+          title: const Text(
+            'Languages',
+            style: TextStyle(
+                color: ColorManager.primary, fontWeight: FontWeight.bold),
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      body:
-      builderItems(context)
-    );
+        body: builderItems(context));
   }
 
-  Widget builderItems(BuildContext context){
-    return
-      languages==null?
-          const LoadingDataView()
-      :ListView.builder(
-        itemCount: languages?.length??0,
-        itemBuilder: (context,index)=>
-            ItemWidget(
-        item: languages?[index]??''));
+  Widget builderItems(BuildContext context) {
+    return languages == null
+        ? const LoadingDataView()
+        : ListView.builder(
+            itemCount: languages?.length ?? 0,
+            itemBuilder: (context, index) =>
+                ItemWidget(item: languages?[index] ?? ''));
   }
 }
-
-

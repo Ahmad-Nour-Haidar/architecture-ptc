@@ -21,28 +21,32 @@ Divider divider({
 }
 
 TextStyle _getTextStyle(
-    {double? fontSize, FontWeight? fontWeight, Color? color,double? letterSpacing}) {
+    {double? fontSize,
+    FontWeight? fontWeight,
+    Color? color,
+    double? letterSpacing}) {
   return TextStyle(
-     fontFamily: FontManager.fontFamilyAR,
+      fontFamily: FontManager.fontFamilyAR,
       fontSize: fontSize,
-      letterSpacing:letterSpacing,
+      letterSpacing: letterSpacing,
       fontWeight: fontWeight,
-
-      color: color??ColorManager.textColor);
+      color: color ?? ColorManager.textColor);
 }
 
 ///Regular Style
-TextStyle getRegularStyle(
-    {double? fontSize = FontSize.s16,  Color? color}) {
+TextStyle getRegularStyle({double? fontSize = FontSize.s16, Color? color}) {
   return _getTextStyle(
       fontSize: fontSize, fontWeight: FontWegihtManager.regular, color: color);
 }
 
 ///Bold Style
 TextStyle getBoldStyle(
-    {double? fontSize = FontSize.s16,  Color? color,double? letterSpacing}) {
+    {double? fontSize = FontSize.s16, Color? color, double? letterSpacing}) {
   return _getTextStyle(
-      fontSize: fontSize, fontWeight: FontWegihtManager.bold, color: color,letterSpacing:letterSpacing);
+      fontSize: fontSize,
+      fontWeight: FontWegihtManager.bold,
+      color: color,
+      letterSpacing: letterSpacing);
 }
 
 ///SemiBold Style
@@ -54,27 +58,29 @@ TextStyle getSemiBoldStyle(
 
 ///Bold Style
 TextStyle getMediumStyle(
-    {double? fontSize = FontSize.s16,  Color? color,double? letterSpacing}) {
+    {double? fontSize = FontSize.s16, Color? color, double? letterSpacing}) {
   return _getTextStyle(
-      fontSize: fontSize, fontWeight: FontWegihtManager.medium, color: color,letterSpacing:letterSpacing);
+      fontSize: fontSize,
+      fontWeight: FontWegihtManager.medium,
+      color: color,
+      letterSpacing: letterSpacing);
 }
 
 ///Light Style
-TextStyle getLightStyle(
-    {double? fontSize = FontSize.s16,  Color? color}) {
+TextStyle getLightStyle({double? fontSize = FontSize.s16, Color? color}) {
   return _getTextStyle(
       fontSize: fontSize, fontWeight: FontWegihtManager.light, color: color);
 }
 
 ///Regular Style
 TextStyle getPoppinsStyle(
-    {double? fontSize = FontSize.s16, required Color? color,FontWeight? fontWeight}) {
-  return
-    TextStyle(
-        fontFamily: FontManager.fontFamilyPoppins,
-        fontSize: fontSize,
-        // letterSpacing:letterSpacing,
-         fontWeight: fontWeight,
-        color: color
-    );
+    {double? fontSize = FontSize.s16,
+    required Color? color,
+    FontWeight? fontWeight}) {
+  return TextStyle(
+      fontFamily: FontManager.fontFamilyPoppins,
+      fontSize: fontSize,
+      // letterSpacing:letterSpacing,
+      fontWeight: fontWeight,
+      color: color);
 }

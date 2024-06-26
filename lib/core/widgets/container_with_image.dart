@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 
-
 import '../helper/sizer_media_query.dart';
 import '../utils/assets_manager.dart';
 

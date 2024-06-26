@@ -4,7 +4,6 @@ part 'error_entity.g.dart';
 
 @JsonSerializable()
 class ErrorEntity {
-
   String? message;
 
   ErrorEntity({required this.message});

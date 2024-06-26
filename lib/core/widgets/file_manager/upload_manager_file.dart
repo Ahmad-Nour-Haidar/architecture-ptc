@@ -6,17 +6,23 @@ import '../../../src/features/mail_box/presentation/cubits/request_box_cubit/req
 import 'file_upload_widget.dart';
 
 class UploadManagerFile extends StatelessWidget {
-  const UploadManagerFile({super.key, required this.file,});
+  const UploadManagerFile({
+    super.key,
+    required this.file,
+  });
 
-  final PlatformFile file ;
-
+  final PlatformFile file;
 
   @override
   Widget build(BuildContext context) {
     return UploadManagerBase(
-      builder:(context, state, infoFile)=>FileUploadWidget(file: infoFile) //Text("${state} ${infoFile.key} ${infoFile.progress}")
-    , file: file,
-     uploadFile: (file,infoFile) =>context.read<RequestBoxCubit>().uploadRequestFiles(context,files:[file],infoFile:infoFile)
-    );
+        builder: (context, state, infoFile) => FileUploadWidget(
+            file:
+                infoFile) //Text("${state} ${infoFile.key} ${infoFile.progress}")
+        ,
+        file: file,
+        uploadFile: (file, infoFile) => context
+            .read<RequestBoxCubit>()
+            .uploadRequestFiles(context, files: [file], infoFile: infoFile));
   }
 }

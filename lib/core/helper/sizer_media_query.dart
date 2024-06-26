@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 
-Size getSize(context){
+Size getSize(context) {
   return MediaQuery.of(context).size;
 }
 
-double getWidth(context){
+double getWidth(context) {
   return getSize(context).width;
 }
 
-double getHeight(context){
+double getHeight(context) {
   return getSize(context).height;
 }

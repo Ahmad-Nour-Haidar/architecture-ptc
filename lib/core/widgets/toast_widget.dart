@@ -8,7 +8,7 @@ class ToastWidget extends StatelessWidget {
   const ToastWidget(
       {super.key,
       this.title = 'Title',
-      this.icon ,
+      this.icon,
       this.description = 'Description',
       this.color = ColorManager.warning});
 
@@ -47,9 +47,16 @@ class ToastWidget extends StatelessWidget {
                         child: ListTile(
                           title: Row(
                             children: [
-                              if(icon!=null)...[
-                              Icon(icon,color: color,size: AppSize.s16,),
-                              const SizedBox(width: AppSize.s4,),],
+                              if (icon != null) ...[
+                                Icon(
+                                  icon,
+                                  color: color,
+                                  size: AppSize.s16,
+                                ),
+                                const SizedBox(
+                                  width: AppSize.s4,
+                                ),
+                              ],
                               Text(
                                 title,
                                 maxLines: 1,

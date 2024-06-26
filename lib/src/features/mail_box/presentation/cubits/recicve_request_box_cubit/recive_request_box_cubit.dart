@@ -1,4 +1,3 @@
-
 import 'package:architecture_ptc/core/widgets/widgets_Informative/empty_data_view.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
@@ -17,72 +16,78 @@ part 'recive_request_box_cubit.freezed.dart';
 
 class ReciveRequestBoxCubit extends Cubit<ReciveRequestBoxState> {
   final RequestBoxRepository _repository;
-  ReciveRequestBoxCubit(this._repository) : super(const ReciveRequestBoxState.initial());
+  ReciveRequestBoxCubit(this._repository)
+      : super(const ReciveRequestBoxState.initial());
   RequestBoxes? requestBoxes;
   BaseModel? baseModel;
   String? currentNameList;
 
-
-  void init()  {
-    baseModel=null;
-    requestBoxes=null;
+  void init() {
+    baseModel = null;
+    requestBoxes = null;
     //emit(const ReciveRequestBoxState.initial(),);
   }
 
-  Future<void> getRequestBoxes(
-    BuildContext context,
-    String nameList  ///send || recived
-  ) async {
-    if(currentNameList!=nameList){
-      currentNameList=nameList;
-      baseModel=null;
+  Future<void> getRequestBoxes(BuildContext context, String nameList
+
+      ///send || recived
+      ) async {
+    if (currentNameList != nameList) {
+      currentNameList = nameList;
+      baseModel = null;
     }
-    if (baseModel!=null&&baseModel?.meta?.to == null) return;
+    if (baseModel != null && baseModel?.meta?.to == null) return;
     emit(
       const ReciveRequestBoxState.loadingPagination(),
     );
-    int pageKey = (baseModel?.meta?.currentPage??-1) + 1;
-    if(pageKey==0) {
-      requestBoxes=RequestBoxes(listRequestBox: []);
+    int pageKey = (baseModel?.meta?.currentPage ?? -1) + 1;
+    if (pageKey == 0) {
+      requestBoxes = RequestBoxes(listRequestBox: []);
     }
 
-    final response = await _repository.getRequestBoxes(page: pageKey,nameList:nameList);
+    final response =
+        await _repository.getRequestBoxes(page: pageKey, nameList: nameList);
     response.when(
       success: (data) async {
         baseModel = data;
         requestBoxes?.listRequestBox.addAll(data.data.listRequestBox);
-        if(requestBoxes?.listRequestBox.isEmpty??true) {
-          emit(ReciveRequestBoxState.emptyPagination(data.message),);
+        if (requestBoxes?.listRequestBox.isEmpty ?? true) {
+          emit(
+            ReciveRequestBoxState.emptyPagination(data.message),
+          );
         } else {
-          emit(ReciveRequestBoxState.successPagination(requestBoxes, data.message),);
+          emit(
+            ReciveRequestBoxState.successPagination(requestBoxes, data.message),
+          );
         }
       },
       failure: (networkException) {
         emit(
           ReciveRequestBoxState.failurePagination(networkException),
         );
-        Constants.onNetworkFailure(context,networkException:networkException);
+        Constants.onNetworkFailure(context, networkException: networkException);
       },
     );
   }
 
   ///buildMailBoxDetails
-  bool buildListRecBoxesWhen(ReciveRequestBoxState previous,ReciveRequestBoxState current){
-    if(current==previous) return false;
+  bool buildListRecBoxesWhen(
+      ReciveRequestBoxState previous, ReciveRequestBoxState current) {
+    if (current == previous) return false;
     return current.maybeWhen(
-        loadingPagination: () =>true ,
-        emptyPagination: (_) =>true ,
-        successPagination: (_,__) =>true ,
-        failurePagination: (_) =>true ,
-        orElse: () =>false
-    );
+        loadingPagination: () => true,
+        emptyPagination: (_) => true,
+        successPagination: (_, __) => true,
+        failurePagination: (_) => true,
+        orElse: () => false);
   }
-  Widget buildListRecBoxes(BuildContext context,ReciveRequestBoxState state,Widget child)=>
-      state.maybeWhen(
-          loadingPagination:()=>const LoadingDataView(),
-          failurePagination: (networkExceptions)=> ErrorView(networkExceptions:networkExceptions),
-          emptyPagination:(message)=>EmptyDataView() ,
-          orElse: () =>child
-      );
 
+  Widget buildListRecBoxes(
+          BuildContext context, ReciveRequestBoxState state, Widget child) =>
+      state.maybeWhen(
+          loadingPagination: () => const LoadingDataView(),
+          failurePagination: (networkExceptions) =>
+              ErrorView(networkExceptions: networkExceptions),
+          emptyPagination: (message) => EmptyDataView(),
+          orElse: () => child);
 }

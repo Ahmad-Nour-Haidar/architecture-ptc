@@ -4,39 +4,42 @@ import '../mixins/paginate_mixin.dart';
 
 class PagingAdapter<T> with PagingMixin<T> {
   PagingController<int, T> pagingController = PagingController(firstPageKey: 1);
-  PagingAdapter({ required this.fetchItems});
-  Future<void> Function (BuildContext context, {required int? pageKey}) fetchItems;
+  PagingAdapter({required this.fetchItems});
+  Future<void> Function(BuildContext context, {required int? pageKey})
+      fetchItems;
   @override
-  Future<void> getItems(BuildContext context, {required int? pageKey})=>fetchItems(context,pageKey:pageKey);
+  Future<void> getItems(BuildContext context, {required int? pageKey}) =>
+      fetchItems(context, pageKey: pageKey);
 
-  void refresh(){
-    baseModel=null;
+  void refresh() {
+    baseModel = null;
     pagingController.refresh();
   }
-  int? loadPaginate(Function ()? onRefresh,Function ()? onFirst,Function ()? onNextPage){
-    int? pageKey=getNextPage();
+
+  int? loadPaginate(
+      Function()? onRefresh, Function()? onFirst, Function()? onNextPage) {
+    int? pageKey = getNextPage();
     if (pageKey == null) {
-      onRefresh!=null?onRefresh():'';
-     return null;
+      onRefresh != null ? onRefresh() : '';
+      return null;
     }
-    if(pageKey<=1){
-      if(pagingController.itemList?.isNotEmpty??false) {
+    if (pageKey <= 1) {
+      if (pagingController.itemList?.isNotEmpty ?? false) {
         return null;
       }
-      onFirst!=null?onFirst():'';
-    }
-    else{
-      onNextPage!=null?onNextPage():'';
+      onFirst != null ? onFirst() : '';
+    } else {
+      onNextPage != null ? onNextPage() : '';
     }
     return pageKey;
   }
 
-
-  void init(){
+  void init() {
     pagingController.dispose();
-   pagingController = PagingController(firstPageKey: 1);
+    pagingController = PagingController(firstPageKey: 1);
   }
-  void dispose(){
+
+  void dispose() {
     pagingController.dispose();
   }
 }

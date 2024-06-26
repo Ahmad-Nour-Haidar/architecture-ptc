@@ -15,7 +15,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   ///animation
   late AnimationController _controller;
   late Animation<double> animation;
-  _initAnimation(){
+  _initAnimation() {
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
@@ -23,6 +23,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     animation = CurvedAnimation(parent: _controller, curve: Curves.easeOutBack);
     _controller.forward();
   }
+
   ///end animation
   @override
   void initState() {
@@ -34,32 +35,32 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
-      Center(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-          Hero(
-            tag: 'location-image-${AssetsManager.logoIMG}',
-            child: ScaleTransition(
-            scale: animation,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  AssetsManager.logoIMG,
-                  width: getWidth(context) / 1.5,
-                  height: getWidth(context) / 1.5,
+            Hero(
+              tag: 'location-image-${AssetsManager.logoIMG}',
+              child: ScaleTransition(
+                scale: animation,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      AssetsManager.logoIMG,
+                      width: getWidth(context) / 1.5,
+                      height: getWidth(context) / 1.5,
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
-        ),
-          ),
           ],
         ),
       ),
     );
   }
+
   @override
   void dispose() {
     _controller.dispose();

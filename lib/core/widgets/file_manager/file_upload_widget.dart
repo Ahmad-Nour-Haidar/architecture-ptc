@@ -19,32 +19,35 @@ class FileUploadWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return ListTile(
-      trailing: file.complete??false
+      trailing: file.complete ?? false
           ? IconButton(
-          onPressed: onTap,
-          icon: const Icon(
-            Icons.delete,
-            color: ColorManager.error,
-          ))
+              onPressed: onTap,
+              icon: const Icon(
+                Icons.delete,
+                color: ColorManager.error,
+              ))
           : null,
       leading: const CircleAvatar(
         child: Icon(
           Icons.file_present_outlined,
         ),
       ),
-      title: file.complete??false
-          ? Text(file.name ??'',maxLines: 2,overflow:TextOverflow.ellipsis ,)
+      title: file.complete ?? false
+          ? Text(
+              file.name ?? '',
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            )
           : LinearPercentIndicator(
-        padding: EdgeInsets.zero,
-        trailing: Text(' ${int.parse(file.progress??'0')}%'),
-        animation: true,
-        curve: Curves.easeInOut,
-        percent: double.parse(file.progress??'0')/100,
-        progressColor: ColorManager.primary,
-      ),
-      subtitle:  Text(formatFileSize(int.parse(file.size ?? '0'))),
+              padding: EdgeInsets.zero,
+              trailing: Text(' ${int.parse(file.progress ?? '0')}%'),
+              animation: true,
+              curve: Curves.easeInOut,
+              percent: double.parse(file.progress ?? '0') / 100,
+              progressColor: ColorManager.primary,
+            ),
+      subtitle: Text(formatFileSize(int.parse(file.size ?? '0'))),
     );
   }
 }

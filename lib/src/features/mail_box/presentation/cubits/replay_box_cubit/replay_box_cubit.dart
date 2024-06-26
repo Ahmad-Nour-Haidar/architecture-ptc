@@ -1,4 +1,3 @@
-
 import 'package:bloc/bloc.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
@@ -24,13 +23,13 @@ class ReplayBoxCubit extends Cubit<ReplayBoxState> {
   String? currentNameList;
   FileModels? fileModels;
 
-  Future<void> getReplayBoxById(
-    BuildContext context,{required int replayBoxId}
-  ) async {
+  Future<void> getReplayBoxById(BuildContext context,
+      {required int replayBoxId}) async {
     emit(
       const ReplayBoxState.loading(),
     );
-    final response = await _repository.getReplayBoxById(replayBoxId:replayBoxId);
+    final response =
+        await _repository.getReplayBoxById(replayBoxId: replayBoxId);
     response.when(
       success: (data) async {
         replayBox = data.data;
@@ -43,7 +42,7 @@ class ReplayBoxCubit extends Cubit<ReplayBoxState> {
         emit(
           ReplayBoxState.failure(networkException),
         );
-        Constants.onNetworkFailure(context,networkException:networkException);
+        Constants.onNetworkFailure(context, networkException: networkException);
       },
     );
   }
@@ -51,15 +50,14 @@ class ReplayBoxCubit extends Cubit<ReplayBoxState> {
   Future<void> getReplayBoxes(
     BuildContext context,
   ) async {
-
-    if (baseModel!=null&&baseModel?.meta?.to == null) return;
+    if (baseModel != null && baseModel?.meta?.to == null) return;
     emit(
       const ReplayBoxState.loadingPagination(),
     );
 
-    int pageKey = baseModel?.meta?.currentPage??-1 + 1;
-    if(pageKey==0) {
-      replayBoxes=ReplayBoxes(listReplayBox: []);
+    int pageKey = baseModel?.meta?.currentPage ?? -1 + 1;
+    if (pageKey == 0) {
+      replayBoxes = ReplayBoxes(listReplayBox: []);
     }
 
     final response = await _repository.getReplayBoxes(page: pageKey);
@@ -75,34 +73,32 @@ class ReplayBoxCubit extends Cubit<ReplayBoxState> {
         emit(
           ReplayBoxState.failurePagination(networkException),
         );
-        Constants.onNetworkFailure(context,networkException:networkException);
+        Constants.onNetworkFailure(context, networkException: networkException);
       },
     );
   }
 
-
   Future<void> createReplayBox(
-      BuildContext context,{
-        required int? requestId,
-        required String title,
-        required String? subTitle,
-        required List<int>? fileIds,
-      }
-      ) async {
+    BuildContext context, {
+    required int? requestId,
+    required String title,
+    required String? subTitle,
+    required List<int>? fileIds,
+  }) async {
     Constants.loading(context);
-    replayBox=ReplayBox(title: title,requestId: requestId,subTitle: subTitle);
-    final response = await _repository.createReplayBox(replayBox:replayBox!,fileIds:fileIds
-    );
+    replayBox =
+        ReplayBox(title: title, requestId: requestId, subTitle: subTitle);
+    final response = await _repository.createReplayBox(
+        replayBox: replayBox!, fileIds: fileIds);
     response.when(
       success: (data) async {
         goRouter.pop();
         goRouter.pop();
-        Constants.onSuccess(context,message: data.message);
-
+        Constants.onSuccess(context, message: data.message);
       },
       failure: (networkException) {
         goRouter.pop();
-        Constants.onNetworkFailure(context,networkException:networkException);
+        Constants.onNetworkFailure(context, networkException: networkException);
       },
     );
   }
@@ -127,52 +123,48 @@ class ReplayBoxCubit extends Cubit<ReplayBoxState> {
   // }
 
   Future<void> uploadReplayFiles(
-      BuildContext context,{
-        required List<PlatformFile> files,
-      }
-      ) async {
-    final response = await _repository.uploadReplayFiles(files:files);
+    BuildContext context, {
+    required List<PlatformFile> files,
+  }) async {
+    final response = await _repository.uploadReplayFiles(files: files);
     response.when(
       success: (data) async {
         fileModels ??= FileModels(listFileModel: []);
         fileModels?.listFileModel.addAll(data.data.listFileModel);
-        Constants.onSuccess(context,message: data.message);
+        Constants.onSuccess(context, message: data.message);
       },
       failure: (networkException) {
-        Constants.onNetworkFailure(context,networkException:networkException);
+        Constants.onNetworkFailure(context, networkException: networkException);
       },
     );
   }
 
-  Future<void> updateReplayBox(
-      BuildContext context,{
-        required ReplayBox replayBox
-      }
-      ) async {
-    final response = await _repository.updateReplayBox(replayBox:replayBox, replayBoxId: replayBox.id??-1);
+  Future<void> updateReplayBox(BuildContext context,
+      {required ReplayBox replayBox}) async {
+    final response = await _repository.updateReplayBox(
+        replayBox: replayBox, replayBoxId: replayBox.id ?? -1);
     response.when(
       success: (data) async {
-        this.replayBox=replayBox;
-        Constants.onSuccess(context,message: data.message);
+        this.replayBox = replayBox;
+        Constants.onSuccess(context, message: data.message);
       },
       failure: (networkException) {
-        Constants.onNetworkFailure(context,networkException:networkException);
+        Constants.onNetworkFailure(context, networkException: networkException);
       },
     );
   }
-  Future<void> deleteReplayBox(
-      BuildContext context,{
-        required int replayBoxId
-      }
-      ) async {
-    final response = await _repository.deleteReplayBox(replayBoxId:replayBoxId );
+
+  Future<void> deleteReplayBox(BuildContext context,
+      {required int replayBoxId}) async {
+    final response =
+        await _repository.deleteReplayBox(replayBoxId: replayBoxId);
     response.when(
       success: (data) async {
-        replayBox=null;
-        Constants.onSuccess(context,message: data.message);
+        replayBox = null;
+        Constants.onSuccess(context, message: data.message);
       },
       failure: (networkException) {
-        Constants.onNetworkFailure(context,networkException:networkException);
+        Constants.onNetworkFailure(context, networkException: networkException);
       },
     );
   }
