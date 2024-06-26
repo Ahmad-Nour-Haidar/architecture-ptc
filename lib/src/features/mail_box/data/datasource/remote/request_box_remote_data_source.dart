@@ -43,7 +43,15 @@ class RequestBoxRemoteDataSource {
   }
 
   Future<BaseModel> getRequestBoxById({required int requestBoxId}) async {
-    return BaseModel(data: null);
+    final response = await _apiServices.get(
+      AppUrl.requestMailBoxById + requestBoxId.toString(),
+      hasToken: true,
+    );
+
+    return BaseModel.fromJson(
+      response,
+      (json) => RequestBox.fromJson(json),
+    );
 
     ///code here
   }
