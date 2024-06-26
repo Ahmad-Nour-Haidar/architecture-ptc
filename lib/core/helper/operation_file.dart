@@ -22,11 +22,12 @@ String formatFileSize(int fileSize) {
 void openUrl({required String path}) async {
   // Replace the URL with your own PDF file URL
   final url = Uri.parse(path);
-  if (await canLaunchUrl(url)) {
-    await launchUrl(url);
-  } else {
-    throw 'Could not launch $url';
-  }
+  await launchUrl(url);
+  // if (await canLaunchUrl(url)) {
+  //   await launchUrl(url);
+  // } else {
+  //   throw 'Could not launch $url';
+  // }
 }
 
 void openPdf({required String path}) async {

@@ -119,15 +119,26 @@ class RequestBoxCubit extends Cubit<RequestBoxState> {
   Future<void> getInfoBox(
     BuildContext context,
   ) async {
-    emit(const RequestBoxState.loading());
+    emit(
+      const RequestBoxState.loading(),
+    );
     final response = await repository.getInfoBox();
     response.when(
-      success: (data) async {},
-      failure: (networkException) {
+      success: (data) {
+        infoBox = data.data;
         emit(
-          RequestBoxState.failure(networkException),
+          RequestBoxState.successPage(
+            infoBox,
+            data.message,
+          ),
         );
-        Constants.onNetworkFailure(context, networkException: networkException);
+      },
+      failure: (networkExceptions) {
+        emit(
+          RequestBoxState.failure(
+            networkExceptions,
+          ),
+        );
       },
     );
   }
@@ -196,6 +207,7 @@ class RequestBoxCubit extends Cubit<RequestBoxState> {
         loading: () => true,
         empty: (_) => true,
         success: (_, __) => true,
+        successPage: (_, __) => true,
         failure: (_) => true,
         orElse: () => false);
   }

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'core/data/datasource/configuration/locator.dart';
 import 'src/app.dart';
-import 'src/features/mail_box/data/datasource/remote/request_box_remote_data_source.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:architecture_ptc/core/widgets/widgets_Informative/empty_data_view.dart';
-import 'package:architecture_ptc/core/widgets/widgets_Informative/loading_data_view.dart';
 import 'package:architecture_ptc/src/features/mail_box/data/datasource/dummy/dummy_request_box_generator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -58,88 +57,99 @@ class _MailBoxRequestPageState extends State<MailBoxRequestPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (infoBox == null) {
-      return const LoadingDataView();
-    } else {
-      return DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          floatingActionButton: FloatingActionButton.extended(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => const CreateMailBoxPage()));
-              },
-              icon: const Icon(Icons.add),
-              label: const Text('Add Request')),
-          appBar: AppBar(
-            bottom: TabBar(
-              isScrollable: true,
-              indicatorColor: ColorManager.primary,
-              unselectedLabelColor: ColorManager.grey,
-              labelColor: ColorManager.secondary,
-              tabs: [
-                Tab(
-                  icon: Badge(
-                    label: Text('${infoBox?.countNewSendBoxes ?? 0}'),
-                    child: const Icon(
-                      Icons.upload_file_outlined,
+    context.read<RequestBoxCubit>().getInfoBox(context);
+    return BlocBuilder<RequestBoxCubit, RequestBoxState>(
+      buildWhen: (previous, current) => context
+          .read<RequestBoxCubit>()
+          .buildMailBoxDetailsWhen(previous, current),
+      builder: (context, state) {
+        infoBox = context.read<RequestBoxCubit>().infoBox ?? infoBox;
+        return context.read<RequestBoxCubit>().buildMailBoxDetails(
+              context,
+              state,
+              DefaultTabController(
+                length: 2,
+                child: Scaffold(
+                  floatingActionButton: FloatingActionButton.extended(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => const CreateMailBoxPage()));
+                      },
+                      icon: const Icon(Icons.add),
+                      label: const Text('Add Request')),
+                  appBar: AppBar(
+                    bottom: TabBar(
+                      isScrollable: true,
+                      indicatorColor: ColorManager.primary,
+                      unselectedLabelColor: ColorManager.grey,
+                      labelColor: ColorManager.secondary,
+                      tabs: [
+                        Tab(
+                          icon: Badge(
+                            label: Text('${infoBox?.countNewSendBoxes ?? 0}'),
+                            child: const Icon(
+                              Icons.upload_file_outlined,
+                            ),
+                          ),
+                          text:
+                              'Outgoing orders (${infoBox?.countSendBoxes ?? 0})',
+                        ),
+                        Tab(
+                          icon: Badge(
+                            label:
+                                Text('${infoBox?.countNewRecivedBoxes ?? 0}'),
+                            child: const Icon(
+                              Icons.archive_outlined,
+                            ),
+                          ),
+                          text:
+                              'Requests received (${infoBox?.countRecivedBoxes ?? 0})',
+                        ),
+                      ],
+                    ),
+                    toolbarHeight: 0.0,
+                  ),
+                  body: Container(
+                    padding: const EdgeInsets.all(AppPadding.p12),
+                    margin: const EdgeInsets.all(AppMargin.m12),
+                    decoration: BoxDecoration(
+                        color: ColorManager.white,
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [
+                          BoxShadow(
+                            color: ColorManager.black.withOpacity(.15),
+                            blurRadius: 8,
+                          )
+                        ]),
+                    child: RefreshBase(
+                      onRefresh: () async {},
+                      child: TabBarView(
+                        children: [
+                          RefreshBase(
+                              onRefresh: () async {
+                                // context.read<RequestBoxCubit>().onRefresh(context);
+                              },
+                              child: BuildListSendBoxes(
+                                list: sendRequestBoxes,
+                              )),
+                          RefreshBase(
+                              onRefresh: () async {
+                                // context.read<RequestBoxCubit>().onRefresh(context);
+                              },
+                              child: BuildListRecBoxes(
+                                list: recRequestBoxes,
+                              )),
+                        ],
+                      ),
                     ),
                   ),
-                  text: 'Outgoing orders (${infoBox?.countSendBoxes ?? 0})',
                 ),
-                Tab(
-                  icon: Badge(
-                    label: Text('${infoBox?.countNewRecivedBoxes ?? 0}'),
-                    child: const Icon(
-                      Icons.archive_outlined,
-                    ),
-                  ),
-                  text:
-                      'Requests received (${infoBox?.countRecivedBoxes ?? 0})',
-                ),
-              ],
-            ),
-            toolbarHeight: 0.0,
-          ),
-          body: Container(
-            padding: const EdgeInsets.all(AppPadding.p12),
-            margin: const EdgeInsets.all(AppMargin.m12),
-            decoration: BoxDecoration(
-                color: ColorManager.white,
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: [
-                  BoxShadow(
-                    color: ColorManager.black.withOpacity(.15),
-                    blurRadius: 8,
-                  )
-                ]),
-            child: RefreshBase(
-              onRefresh: () async {},
-              child: TabBarView(
-                children: [
-                  RefreshBase(
-                      onRefresh: () async {
-                        // context.read<RequestBoxCubit>().onRefresh(context);
-                      },
-                      child: BuildListSendBoxes(
-                        list: sendRequestBoxes,
-                      )),
-                  RefreshBase(
-                      onRefresh: () async {
-                        // context.read<RequestBoxCubit>().onRefresh(context);
-                      },
-                      child: BuildListRecBoxes(
-                        list: recRequestBoxes,
-                      )),
-                ],
               ),
-            ),
-          ),
-        ),
-      );
-    }
+            );
+      },
+    );
   }
 }
 
