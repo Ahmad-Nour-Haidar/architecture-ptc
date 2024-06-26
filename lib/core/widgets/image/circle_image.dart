@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 import 'base_image.dart';
 
 class CircleImage extends StatelessWidget {
-  const CircleImage(
-      {super.key,
-      this.url,
-      this.failUrl,
-      this.emptyUrl,
-      this.width,
-      this.height});
+  const CircleImage({
+    super.key,
+    this.url,
+    this.failUrl,
+    this.emptyUrl,
+    this.width,
+    this.height,
+  });
 
   final String? url;
   final String? failUrl;

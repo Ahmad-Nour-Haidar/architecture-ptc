@@ -33,9 +33,14 @@ class RequestBoxRepository {
     }
   }
 
-  Future<ApiResponse<BaseModel>> getRequestBoxes(
-      {required int? page, required String nameList}) async {
-    return ApiResponse.success(BaseModel(data: null));
+  Future<ApiResponse<BaseModel>> getRequestBoxes({
+    required int? page,
+    required String nameList,
+  }) async {
+    final response =
+        await _remoteDataSource.getRequestBoxes(page: page, nameList: nameList);
+
+    return ApiResponse.success(response);
 
     ///code here
   }
@@ -48,9 +53,14 @@ class RequestBoxRepository {
   }
 
   Future<ApiResponse<BaseModel>> getInfoBox() async {
-    return ApiResponse.success(BaseModel(data: null));
-
-    ///code here
+    try {
+      final response = await _remoteDataSource.getInfoBox();
+      return ApiResponse.success(response);
+    } catch (error) {
+      return ApiResponse.failure(
+        NetworkExceptions.getException(error),
+      );
+    }
   }
 
   Future<ApiResponse<BaseModel>> uploadRequestFiles(BuildContext context,

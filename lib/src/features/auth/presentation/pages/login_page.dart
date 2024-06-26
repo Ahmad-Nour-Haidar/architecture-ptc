@@ -5,8 +5,6 @@ import '../../../../../core/utils/color_manager.dart';
 import '../../../../../core/utils/validator_manager.dart';
 import '../../../../../core/utils/values_manager.dart';
 import '../../../../../core/utils/assets_manager.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import '../../../../../core/widgets/container_with_image.dart';
 import '../../../../../core/widgets/textfield_app.dart';
 import '../../../../../core/widgets/textfield_with_label.dart';
 import '../../../core/presentation/cubits/user_cubit/user_cubit.dart';
@@ -54,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     height: AppSize.s20,
                   ),
-                  Text(
+                  const Text(
                     'welcome to',
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -65,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     height: AppSize.s10,
                   ),
-                  Text(
+                  const Text(
                     'PTC',
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -127,7 +125,7 @@ class _LoginPageState extends State<LoginPage> {
                                         : Icons.check_box_outline_blank,
                                     color: ColorManager.primary,
                                   ),
-                                  Text(
+                                  const Text(
                                     'Remember me',
                                     style: TextStyle(
                                       fontSize: 13,
@@ -146,7 +144,7 @@ class _LoginPageState extends State<LoginPage> {
                           onPressed: () {
                             ///Code here
                           },
-                          child: Text(
+                          child: const Text(
                             'Forgot Your Password ? ',
                             style: TextStyle(
                               fontSize: 13,
@@ -174,13 +172,13 @@ class _LoginPageState extends State<LoginPage> {
                           login();
                         }
                       },
-                      child: Text('Login'),
+                      child: const Text('Login'),
                     ),
                   ),
                   const SizedBox(
                     height: AppSize.s20,
                   ),
-                  Text(
+                  const Text(
                     'Not a Member ? ',
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -191,10 +189,12 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   TextButton(
                       onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => SignupPage()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => const SignupPage()));
                       },
-                      child: Text(
+                      child: const Text(
                         'Signup',
                         textAlign: TextAlign.center,
                         style: TextStyle(

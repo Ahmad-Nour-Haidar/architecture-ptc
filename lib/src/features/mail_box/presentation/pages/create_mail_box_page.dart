@@ -1,9 +1,6 @@
-import 'dart:io';
-
 import 'package:architecture_ptc/src/features/core/data/models/user_model.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import '../../../../../core/helper/operation_file.dart';
@@ -28,7 +25,7 @@ class CreateMailBoxPage extends StatefulWidget {
 class _CreateMailBoxPageState extends State<CreateMailBoxPage> {
   final titleController = TextEditingController();
   final subTitleController = TextEditingController();
-  List<PlatformFile> _files = [];
+  final List<PlatformFile> _files = [];
   List<FileModel> _fileModels = [];
   UserModel? _user;
   TypeModel? _typeModel;
@@ -233,7 +230,7 @@ class FileDownloadWidget extends StatelessWidget {
         ),
       ),
       title: Text(file.name ?? ''),
-      subtitle: Text('${formatFileSize((file.size ?? 0))}'),
+      subtitle: Text(formatFileSize((file.size ?? 0))),
     );
   }
 }

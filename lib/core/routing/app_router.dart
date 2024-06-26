@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import '../../src/features/core/presentation/pages/emty_page.dart';
 import '../../src/features/core/presentation/pages/navbar_page.dart';
 import '../../src/features/core/presentation/pages/splash_page.dart';
-import '../data/enums/key_parameter_route_enum.dart';
 
 enum AppRoute {
   noThing,
@@ -15,12 +14,16 @@ enum AppRoute {
   login,
 }
 
-final Map<AppRoute, dynamic> routes = {
+final routes = {
   ///Location
   AppRoute.noThing: (context, state) => const SizedBox.shrink(),
   AppRoute.empty: (context, state) => const EmptyPage(),
   AppRoute.navbar: (context, state) => const NavbarPage(),
   AppRoute.login: (context, state) => const LoginPage(),
+  // AppRoute.detailsSubmitCourse: (context, state) => DetailsSubmitCoursePage(
+  //       state: state,
+  //       submitCourse: state.extra[KeyParameterRoute.submitCourse.name],
+  //     ),
 };
 final goRouter = GoRouter(
   initialLocation: '/',

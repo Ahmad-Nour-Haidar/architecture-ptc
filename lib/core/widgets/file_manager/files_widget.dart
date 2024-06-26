@@ -1,12 +1,7 @@
-import 'package:file_picker/file_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../src/features/core/data/models/file_model.dart';
-import '../../data/models/info_file_model.dart';
-import '../../helper/sizer_media_query.dart';
 import '../../utils/color_manager.dart';
 import '../../utils/theme_manager.dart';
-import '../../utils/values_manager.dart';
 import 'file_download_widget.dart';
 
 class FilesWidget extends StatelessWidget {
@@ -31,7 +26,7 @@ class FilesWidget extends StatelessWidget {
             ),
             label: Text(
               'Files attached (${fileModels.length}) : ',
-              style: TextStyle(color: ColorManager.primary),
+              style: const TextStyle(color: ColorManager.primary),
             ),
             onPressed: null,
           ),

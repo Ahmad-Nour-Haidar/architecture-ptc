@@ -1,3 +1,4 @@
+import 'package:architecture_ptc/src/features/mail_box/data/models/info_box_model.dart';
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,6 @@ import '../../../../../../core/data/models/base_model.dart';
 import '../../../../../../core/domain/services/api_service.dart';
 import '../../../../../../core/utils/app_url.dart';
 import '../../../../core/data/models/file_model.dart';
-import '../../models/info_box_model.dart';
 import '../../models/request_box_model.dart';
 import '../../models/type_model.dart';
 
@@ -49,14 +49,37 @@ class RequestBoxRemoteDataSource {
   }
 
   Future<BaseModel> getInfoBox() async {
-    return BaseModel(data: null);
+    final response = await _apiServices.get(
+      AppUrl.getInfoMailBox,
+      hasToken: true,
+    );
 
-    ///code here
+    return BaseModel.fromJson(
+      response,
+      (json) => InfoBox.fromJson(json),
+    );
   }
 
-  Future<BaseModel> getRequestBoxes(
-      {required int? page, required String nameList}) async {
-    return BaseModel(data: null);
+  Future<BaseModel> getRequestBoxes({
+    required int? page,
+    required String nameList,
+  }) async {
+    final queryParams = <String, String>{
+      if (page != null) 'page': page.toString(),
+    };
+
+    final response = await _apiServices.get(
+      '${AppUrl.requestMailBox}/$nameList',
+      queryParams: queryParams,
+      hasToken: true,
+    );
+    return BaseModel.fromJson(
+      response,
+      (json) => BaseModels.fromJson(
+        json,
+        (itemJson) => RequestBox.fromJson(itemJson),
+      ),
+    );
 
     ///code here
   }
@@ -72,8 +95,10 @@ class RequestBoxRemoteDataSource {
 
     return BaseModel.fromJson(
       response,
-      (json) =>
-          BaseModels.fromJson(json, (itemJson) => TypeModel.fromJson(itemJson)),
+      (json) => BaseModels.fromJson(
+        json,
+        (itemJson) => TypeModel.fromJson(itemJson),
+      ),
     );
   }
 }

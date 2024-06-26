@@ -6,13 +6,14 @@ import 'base_image.dart';
 import 'icon/icon_handler.dart';
 
 class ProfileImage extends StatelessWidget {
-  const ProfileImage(
-      {super.key,
-      this.url,
-      this.failUrl,
-      this.emptyUrl,
-      this.width,
-      this.height});
+  const ProfileImage({
+    super.key,
+    this.url,
+    this.failUrl,
+    this.emptyUrl,
+    this.width,
+    this.height,
+  });
 
   final String? url;
   final String? failUrl;

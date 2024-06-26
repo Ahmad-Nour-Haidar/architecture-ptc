@@ -16,7 +16,7 @@ class AppUrl {
   static const login = "${baseUrl}login";
   static const register = "${baseUrl}register";
   static const logout = "${baseUrl}logout";
-  static const getProfile = baseServ + 'api';
+  static const getProfile = '${baseServ}api';
 
   ///------------------------------------------------------------------------------>
 

@@ -11,19 +11,23 @@ import '../../../../../../core/domain/error_handler/network_exceptions.dart';
 import '../../../../../../core/routing/app_router.dart';
 import '../../../../../../core/widgets/constants.dart';
 import '../../../../auth/domain/repositories/auth_repository.dart';
+
 part 'user_state.dart';
+
 part 'user_cubit.freezed.dart';
 
 class UserCubit extends Cubit<UserState> {
   final AuthRepository _repository;
   String? photoProfileUrl;
   XFile? image;
+
   UserCubit(this._repository) : super(const UserState.initial());
   UserModel? user;
   String? emailOtp;
   String? codeOtp;
 
   void _initUser(BuildContext context) {}
+
   Future<void> _saveUser(BuildContext context) async {
     emit(const UserState.save());
     AppStorage.instance.writeData(AppStorage.TOKEN, user?.token);
@@ -71,9 +75,7 @@ class UserCubit extends Cubit<UserState> {
   }
 
   Future<void> logout(BuildContext context) async {
-    emit(
-      const UserState.loading(),
-    );
+    emit(const UserState.loading());
     Constants.loading(context);
 
     final response = await _repository.logout();

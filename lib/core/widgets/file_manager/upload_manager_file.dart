@@ -3,7 +3,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../src/features/mail_box/presentation/cubits/request_box_cubit/request_box_cubit.dart';
-import '../../data/models/info_file_model.dart';
 import 'file_upload_widget.dart';
 
 class UploadManagerFile extends StatelessWidget {

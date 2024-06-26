@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:architecture_ptc/core/data/models/info_file_model.dart';
 import 'package:architecture_ptc/core/widgets/widgets_Informative/empty_data_view.dart';
 import 'package:architecture_ptc/core/widgets/widgets_Informative/loading_data_view.dart';
 import 'package:architecture_ptc/src/features/mail_box/data/datasource/dummy/dummy_request_box_generator.dart';
@@ -29,6 +28,7 @@ class _MailBoxRequestPageState extends State<MailBoxRequestPage> {
   InfoBox? infoBox;
   List<RequestBox>? sendRequestBoxes;
   List<RequestBox>? recRequestBoxes;
+
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
@@ -58,16 +58,18 @@ class _MailBoxRequestPageState extends State<MailBoxRequestPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (infoBox == null)
-      return LoadingDataView();
-    else
+    if (infoBox == null) {
+      return const LoadingDataView();
+    } else {
       return DefaultTabController(
         length: 2,
         child: Scaffold(
           floatingActionButton: FloatingActionButton.extended(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => CreateMailBoxPage()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => const CreateMailBoxPage()));
               },
               icon: const Icon(Icons.add),
               label: const Text('Add Request')),
@@ -81,7 +83,7 @@ class _MailBoxRequestPageState extends State<MailBoxRequestPage> {
                 Tab(
                   icon: Badge(
                     label: Text('${infoBox?.countNewSendBoxes ?? 0}'),
-                    child: Icon(
+                    child: const Icon(
                       Icons.upload_file_outlined,
                     ),
                   ),
@@ -90,7 +92,7 @@ class _MailBoxRequestPageState extends State<MailBoxRequestPage> {
                 Tab(
                   icon: Badge(
                     label: Text('${infoBox?.countNewRecivedBoxes ?? 0}'),
-                    child: Icon(
+                    child: const Icon(
                       Icons.archive_outlined,
                     ),
                   ),
@@ -137,38 +139,51 @@ class _MailBoxRequestPageState extends State<MailBoxRequestPage> {
           ),
         ),
       );
+    }
   }
 }
 
 class BuildListSendBoxes extends StatelessWidget {
   const BuildListSendBoxes({super.key, this.list});
+
   final List<RequestBox>? list;
+
   @override
   Widget build(BuildContext context) {
-    if (list == null)
-      return LoadList();
-    else if (list!.length <= 0)
-      return EmptyDataView();
-    else
-      return ListView.separated(
-          itemBuilder: (context, index) {
-            return MailBoxRequestWidget(
-              requestBox: list![index] ?? RequestBox(title: 'Unknown'),
-            );
-          },
-          separatorBuilder: (_, __) => const Divider(),
-          itemCount: list?.length ?? 0);
+    return BlocBuilder<RequestBoxCubit, RequestBoxState>(
+      buildWhen: (previous, current) => context
+          .read<RequestBoxCubit>()
+          .buildListSendBoxesFirstWhen(previous, current),
+      builder: (context, state) =>
+          context.read<RequestBoxCubit>().buildListSendBoxesFirst(
+                context,
+                pagingController: context
+                    .read<RequestBoxCubit>()
+                    .pagingAdapterSend
+                    .pagingController,
+                itemBuilder: (_, item, index) => Column(
+                  children: [
+                    MailBoxRequestWidget(
+                      requestBox: item ?? RequestBox(title: 'Unknown'),
+                    ),
+                    const Divider(),
+                  ],
+                ),
+              ),
+    );
   }
 }
 
 class BuildListRecBoxes extends StatelessWidget {
   const BuildListRecBoxes({super.key, this.list});
+
   final List<RequestBox>? list;
+
   @override
   Widget build(BuildContext context) {
-    if (list == null)
-      return LoadList();
-    else if (list!.length <= 0)
+    if (list == null) {
+      return const LoadList();
+    } else if (list!.isEmpty)
       return EmptyDataView();
     else
       return ListView.separated(
@@ -219,7 +234,9 @@ class _MailBoxRequestWidgetState extends State<MailBoxRequestWidget> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            '${DateFormat.yMd().add_jm().format(widget.requestBox.showDate ?? DateTime.now())}',
+            DateFormat.yMd()
+                .add_jm()
+                .format(widget.requestBox.showDate ?? DateTime.now()),
             style: const TextStyle(fontSize: 10, color: ColorManager.black),
           ),
           const SizedBox(
@@ -227,14 +244,14 @@ class _MailBoxRequestWidgetState extends State<MailBoxRequestWidget> {
           ),
           Text(
             'Replies : ${widget.requestBox.countReplayBoxes ?? 0}',
-            style: TextStyle(fontSize: 12, color: ColorManager.primary),
+            style: const TextStyle(fontSize: 12, color: ColorManager.primary),
           )
         ],
       ),
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
+          const SizedBox(
             height: AppSize.s4,
           ),
           Text(
@@ -242,7 +259,7 @@ class _MailBoxRequestWidgetState extends State<MailBoxRequestWidget> {
           ),
           Text(
             widget.requestBox.sendUser?.email ?? 'Unknown',
-            style: TextStyle(fontSize: 12, color: ColorManager.primary),
+            style: const TextStyle(fontSize: 12, color: ColorManager.primary),
           ),
         ],
       ),

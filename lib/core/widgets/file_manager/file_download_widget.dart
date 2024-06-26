@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../src/features/core/data/models/file_model.dart';
@@ -30,7 +29,7 @@ class FileDownloadWidget extends StatelessWidget {
         ),
       ),
       title: Text(file.name ?? ''),
-      subtitle: Text('${formatFileSize(file.size ?? 0)}'),
+      subtitle: Text(formatFileSize(file.size ?? 0)),
     );
   }
 }

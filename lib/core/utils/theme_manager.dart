@@ -11,7 +11,7 @@ class ThemeManager {
       .copyWith(
           primaryColor: ColorManager.primary,
           primaryIconTheme: const IconThemeData(color: ColorManager.primary),
-          iconButtonTheme: IconButtonThemeData(
+          iconButtonTheme: const IconButtonThemeData(
             style: ButtonStyle(
                 // iconColor: WidgetStateProperty.all(ColorManager.primary),
                 ),

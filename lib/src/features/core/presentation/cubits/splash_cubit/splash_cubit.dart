@@ -1,11 +1,9 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../../core/data/datasource/configuration/data_configuration.dart';
 import '../../../../../../core/data/datasource/storage/app_storage.dart';
-import '../../../../../../core/routing/app_router.dart';
 import '../user_cubit/user_cubit.dart';
 
 part 'splash_state.dart';

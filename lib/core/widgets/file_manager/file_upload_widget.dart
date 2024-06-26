@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
@@ -21,7 +20,7 @@ class FileUploadWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      trailing: file?.complete ?? false
+      trailing: file.complete ?? false
           ? IconButton(
               onPressed: onTap,
               icon: const Icon(
@@ -34,7 +33,7 @@ class FileUploadWidget extends StatelessWidget {
           Icons.file_present_outlined,
         ),
       ),
-      title: file?.complete ?? false
+      title: file.complete ?? false
           ? Text(
               file.name ?? '',
               maxLines: 2,
@@ -48,7 +47,7 @@ class FileUploadWidget extends StatelessWidget {
               percent: double.parse(file.progress ?? '0') / 100,
               progressColor: ColorManager.primary,
             ),
-      subtitle: Text('${formatFileSize(int.parse(file.size ?? '0'))}'),
+      subtitle: Text(formatFileSize(int.parse(file.size ?? '0'))),
     );
   }
 }

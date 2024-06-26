@@ -1,5 +1,4 @@
 import 'package:architecture_ptc/src/features/core/data/models/user_model.dart';
-import 'package:dio/dio.dart';
 import '../../../../../../core/data/models/base_model.dart';
 import '../../../../../../core/domain/services/api_service.dart';
 import '../../../../../../core/utils/app_url.dart';
@@ -10,14 +9,16 @@ class AuthRemoteDataSource {
   AuthRemoteDataSource(this._apiServices);
 
   Future<BaseModel> login(String email, String password) async {
-    final response = await _apiServices.post(AppUrl.login,
-        body: {
-          "email": email,
-          "password": password,
-        },
-        hasToken: false);
+    final response = await _apiServices.post(
+      AppUrl.login,
+      body: {
+        "email": email,
+        "password": password,
+      },
+      hasToken: false,
+    );
 
-    return BaseModel.fromJson(
+    return BaseModel<UserModel>.fromJson(
       response,
       (json) => UserModel.fromJson(json),
     );

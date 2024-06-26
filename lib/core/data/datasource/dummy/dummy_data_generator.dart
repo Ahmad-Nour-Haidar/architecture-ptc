@@ -1,7 +1,7 @@
-import 'package:faker/faker.dart';
-
 mixin class DummyDataGenerator<T> {
-  T? generateDummyData() {}
+  T? generateDummyData() {
+    return null;
+  }
 
   List<T>? generateDummyListData({int count = 3}) {
     return List.generate(count, (index) => generateDummyData()!);

@@ -19,7 +19,8 @@ initProviders() {
     BlocProvider<SplashCubit>(create: (context) => locator<SplashCubit>()),
     BlocProvider<UserCubit>(create: (context) => locator<UserCubit>()),
     BlocProvider<RequestBoxCubit>(
-        create: (context) => locator<RequestBoxCubit>()),
+      create: (context) => locator<RequestBoxCubit>()..init(context),
+    ),
     BlocProvider<FileManagerCubit>(
         create: (context) => locator<FileManagerCubit>()),
   ];

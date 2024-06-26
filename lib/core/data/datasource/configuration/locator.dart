@@ -14,7 +14,7 @@ import '../../../domain/services/api_services_imp.dart';
 
 final GetIt locator = GetIt.instance;
 
-void setupLocator() {
+Future<void> setupLocator() async {
   locator.registerLazySingleton<Dio>(() => Dio());
   locator.registerLazySingleton<ApiServices>(() => ApiServicesImp(locator()));
   locator.registerLazySingleton<AuthRepository>(

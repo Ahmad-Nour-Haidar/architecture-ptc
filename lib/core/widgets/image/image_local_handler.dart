@@ -2,12 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ImageLocalHandler extends StatelessWidget {
-  const ImageLocalHandler(this.url,
-      {super.key, this.width, this.height, this.fit, this.color});
+  const ImageLocalHandler(
+    this.url, {
+    super.key,
+    this.width,
+    this.height,
+    this.fit,
+    this.color,
+  });
+
   final String? url;
   final double? width, height;
   final BoxFit? fit;
   final Color? color;
+
   @override
   Widget build(BuildContext context) {
     return getImageWidget();
